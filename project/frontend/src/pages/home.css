@@ -6,8 +6,6 @@ body {
 .home-container {
     display: flex;
     align-items: center;
-    min-width: 1000px; /* Asegura un ancho mínimo para evitar que el diseño se rompa en pantallas pequeñas */
-    width: 100vw;
     justify-content: center;
     padding: 4rem 1rem; 
     background-color: #f9fafb;
