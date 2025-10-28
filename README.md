@@ -103,7 +103,27 @@ npm install
 ```
 
 ### ⚙️ Configuración del entorno
+⚠️ IMPORTANTE: para configurar el entorno se debe crear un archivo .env en la carpeta backend/ y  frontend/. 
 
+Luego, pegar el siguiente contenido en el archivo creado en backend:
+```bash
+PORT = 5000 # Se recomienda 5000
+DATABASE_URL = postgres://usuario:contraseña@localhost:5432/asistente_db # Modificar ususario y contraseña de Postgres
+```
+
+Finalmente, pegar el siguiente contenido en el archivo creado en frontend:
+```bash
+VITE_API_URL=http://localhost:5000/
+```
+### 💾 Configuración de la Base de Datos
+
+⚠️ IMPORTANTE: se debe tener PostgreSQL instalado y configurado con un **usuario y contraseña válidos**, los cuales deben ser agregados en el archivo .env (**Configuración del entorno**). 
+
+Creae tablas: Antes de ejecutar el siguiente código en terminal, se debe modificar el usuario:
+```bash
+psql -U "usuario" -d asistente_db -f project/backend/src/database/init.sql
+# Hay que cambiar el "usuario" y pedirá la contraseña de Postgres por terminal
+```
 ### 🏆 Ejecución del Proyecto
 
 Asegurar de tener ambos servidores corriendo para que el frontend pueda comunicarse con el backend.
