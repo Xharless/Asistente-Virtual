@@ -1,16 +1,9 @@
-
-body {
-    margin: 0;
-    padding: 0;
-}
 .home-container {
     display: flex;
     align-items: center;
-    min-width: 1000px; /* Asegura un ancho mínimo para evitar que el diseño se rompa en pantallas pequeñas */
-    width: 100vw;
     justify-content: center;
-    padding: 4rem 1rem; 
-    background-color: #f9fafb;
+    padding: 4rem 1rem;
+    background-color: #111827;
     min-height: calc(100vh - 4rem);
 }
 
@@ -24,16 +17,16 @@ body {
     font-size: 2.25rem;
     line-height: 2.5rem;
     font-weight: 800; 
-    color: #111827; 
+    color: #f9fafb; 
     letter-spacing: -0.025em;
 }
 
 
 .home-subtitle {
     margin-top: 1rem; 
-    font-size: 1.125rem; 
+    font-size: 1.125rem;
     line-height: 1.75rem;
-    color: #4b5563; 
+    color: #9ca3af; 
 }
 
 .button-group {
@@ -56,25 +49,24 @@ body {
 
 
 .cta-button-primary {
-    background-color: #3b82f6; 
-    color: #ffffff; 
+    background-color: #2563eb; 
+    color: #ffffff;
     border: 1px solid transparent;
 }
 
 .cta-button-primary:hover {
-    background-color: #2563eb;
+    background-color: #1d4ed8; 
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 
 .cta-button-secondary {
-    background-color: #ffffff;
-    color: #374151;
-    border: 1px solid #d1d5db;
+    background-color: #374151; 
+    color: #f9fafb; 
+    border: 1px solid #4b5563; 
 }
 
 .cta-button-secondary:hover {
-    background-color: #f9fafb;
-    border-color: #9ca3af;
+    background-color: #4b5563;
+    border-color: #6b7280;
 }
-
