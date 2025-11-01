@@ -92,6 +92,7 @@ npm install
 * react-dom → Gestión del DOM.
 * react-scripts → Scripts para desarrollo y construcción.
 * react-router-dom → Biblioteca que permite la navegación entre vistas.
+* jwt-decode → Utilidad para decodificar tokens JWT en el cliente.
 * react-icons → Librería de iconos propia de React   
 * mocha-junit-reporter → Formatear en un archivo de salida con el formato JUnit XML
 * Otros módulos → Dependencias adicionales según el proyecto.
@@ -148,4 +149,6 @@ npm run dev
 
 
 # Cosas instaladas 
-* npm install bcrypt jsonwebtoken
+* npm install bcrypt jsonwebtoken en backend
+* npm install jwt-decode en frontend
+* npm install react-icons en frontend

@@ -1,19 +1,18 @@
-/* Este archivo es casi idéntico a Login.css, solo cambian los nombres de las clases */
 
 .register-container {
     max-width: 420px;
     margin: 4rem auto;
     padding: 2.5rem;
-    background-color: #1f2937; /* Fondo gris oscuro (plomo-negro) */
+    background-color: #1f2937; 
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border: 1px solid #374151; /* Borde más oscuro */
+    border: 1px solid #374151;
 }
 
 .register-container h2 {
     text-align: center;
     font-size: 1.75rem;
-    color: #f9fafb; /* Texto casi blanco para alto contraste */
+    color: #f9fafb;
     margin-bottom: 2rem;
 }
 
@@ -25,7 +24,7 @@
     display: block;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #9ca3af; /* Texto de etiqueta gris claro */
+    color: #9ca3af; 
     margin-bottom: 0.5rem;
 }
 
@@ -33,9 +32,9 @@
     width: 100%;
     padding: 0.75rem;
     font-size: 1rem;
-    background-color: #374151; /* Fondo de input gris oscuro */
-    color: #f9fafb; /* Texto del input blanco */
-    border: 1px solid #4b5563; /* Borde de input gris medio */
+    background-color: #374151;
+    color: #f9fafb; 
+    border: 1px solid #4b5563; 
     border-radius: 4px;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -43,7 +42,7 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #3b82f6; /* Azul más brillante para el foco */
+    border-color: #3b82f6; 
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
@@ -53,7 +52,7 @@
     font-size: 1.1rem;
     font-weight: bold;
     color: #ffffff;
-    background-color: #2563EB; /* Color azul del Navbar */
+    background-color: #2563EB;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -63,34 +62,34 @@
 
 .register-container button:hover,
 .register-container button:focus {
-    background-color: #1d4ed8; /* Azul más oscuro */
+    background-color: #1d4ed8;
 }
 
 .error-message {
-    color: #f87171; /* Rojo claro para mejor visibilidad en fondo oscuro */
+    color: #f87171; 
     font-size: 0.9rem;
     text-align: center;
     margin-bottom: 1rem;
 }
 
-/* Mensaje de éxito */
+
 .success-message {
-    color: #4ade80; /* Verde claro para mejor visibilidad */
+    color: #4ade80; 
     font-size: 0.9rem;
     text-align: center;
     margin-bottom: 1rem;
 }
 
-/* Enlace para ir a la página de login */
+
 .login-link {
     text-align: center;
     margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: #9ca3af; /* Texto gris claro */
+    color: #9ca3af; 
 }
 
 .login-link a {
-    color: #3b82f6; /* Azul más brillante para enlaces */
+    color: #3b82f6; 
     text-decoration: none;
     font-weight: 600;
 }

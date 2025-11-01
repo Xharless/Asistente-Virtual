@@ -16,7 +16,8 @@ function Register() {
         setSuccess("");
 
         try {
-            const respuesta = await fetch('http://localhost:5000/api/auth/register', {
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/auth/register`;
+            const respuesta = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

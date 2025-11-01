@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     padding: 4rem 1rem;
-    background-color: #111827; /* Fondo oscuro consistente con el tema */
+    background-color: #111827;
     min-height: calc(100vh - 4rem);
 }
 
@@ -17,7 +17,7 @@
     font-size: 2.25rem;
     line-height: 2.5rem;
     font-weight: 800; 
-    color: #f9fafb; /* Texto claro para alto contraste */
+    color: #f9fafb; 
     letter-spacing: -0.025em;
 }
 
@@ -26,7 +26,7 @@
     margin-top: 1rem; 
     font-size: 1.125rem;
     line-height: 1.75rem;
-    color: #9ca3af; /* Subtítulo en gris claro, como en los formularios */
+    color: #9ca3af; 
 }
 
 .button-group {
@@ -49,24 +49,24 @@
 
 
 .cta-button-primary {
-    background-color: #2563eb; /* Azul del tema */
+    background-color: #2563eb; 
     color: #ffffff;
     border: 1px solid transparent;
 }
 
 .cta-button-primary:hover {
-    background-color: #1d4ed8; /* Azul más oscuro al pasar el mouse */
+    background-color: #1d4ed8; 
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 
 .cta-button-secondary {
-    background-color: #374151; /* Fondo gris oscuro, como los inputs */
-    color: #f9fafb; /* Texto claro */
-    border: 1px solid #4b5563; /* Borde gris medio */
+    background-color: #374151; 
+    color: #f9fafb; 
+    border: 1px solid #4b5563; 
 }
 
 .cta-button-secondary:hover {
-    background-color: #4b5563; /* Un poco más claro al pasar el mouse */
+    background-color: #4b5563;
     border-color: #6b7280;
 }

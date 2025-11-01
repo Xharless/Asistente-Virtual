@@ -13,7 +13,8 @@ function Login() {
         setError(""); // Limpia errores previos
 
         try {
-            const respuesta = await fetch('http://localhost:5000/api/auth/login', {
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/auth/login`;
+            const respuesta = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,17 +33,19 @@ function Login() {
             // 1. Guardamos el token en el almacenamiento local del navegador
             localStorage.setItem('token', data.token);
 
-            // 2. Redireccionamos al usuario al Home usando el hook de react-router
-            navigate('/');
+            // 2. Redireccionamos al usuario al Home (o a su dashboard)
+            // (Usando react-router-dom, esto sería con useNavigate(), 
+            // pero window.location es más simple)
+            window.location.href = '/'; // Redirige al Home
 
         } catch (err) {
             setError(err.message);
-            console.error("Error en el login:", err);
+            console.error("Error en el login:", err.message);
         }
     };
 
     return (
-        <div className="login-container">
+        <div className="login-container"> {/* Aplica tus estilos aquí */}
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
