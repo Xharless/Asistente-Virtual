@@ -1,0 +1,100 @@
+/* Este archivo es casi idéntico a Login.css, solo cambian los nombres de las clases */
+
+.register-container {
+    max-width: 420px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background-color: #1f2937; /* Fondo gris oscuro (plomo-negro) */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #374151; /* Borde más oscuro */
+}
+
+.register-container h2 {
+    text-align: center;
+    font-size: 1.75rem;
+    color: #f9fafb; /* Texto casi blanco para alto contraste */
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #9ca3af; /* Texto de etiqueta gris claro */
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: #374151; /* Fondo de input gris oscuro */
+    color: #f9fafb; /* Texto del input blanco */
+    border: 1px solid #4b5563; /* Borde de input gris medio */
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6; /* Azul más brillante para el foco */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.register-container button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #2563EB; /* Color azul del Navbar */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.register-container button:hover,
+.register-container button:focus {
+    background-color: #1d4ed8; /* Azul más oscuro */
+}
+
+.error-message {
+    color: #f87171; /* Rojo claro para mejor visibilidad en fondo oscuro */
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Mensaje de éxito */
+.success-message {
+    color: #4ade80; /* Verde claro para mejor visibilidad */
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Enlace para ir a la página de login */
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #9ca3af; /* Texto gris claro */
+}
+
+.login-link a {
+    color: #3b82f6; /* Azul más brillante para enlaces */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

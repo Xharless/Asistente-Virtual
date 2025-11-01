@@ -1,14 +1,9 @@
-
-body {
-    margin: 0;
-    padding: 0;
-}
 .home-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1rem; 
-    background-color: #f9fafb;
+    padding: 4rem 1rem;
+    background-color: #111827; /* Fondo oscuro consistente con el tema */
     min-height: calc(100vh - 4rem);
 }
 
@@ -22,16 +17,16 @@ body {
     font-size: 2.25rem;
     line-height: 2.5rem;
     font-weight: 800; 
-    color: #111827; 
+    color: #f9fafb; /* Texto claro para alto contraste */
     letter-spacing: -0.025em;
 }
 
 
 .home-subtitle {
     margin-top: 1rem; 
-    font-size: 1.125rem; 
+    font-size: 1.125rem;
     line-height: 1.75rem;
-    color: #4b5563; 
+    color: #9ca3af; /* Subtítulo en gris claro, como en los formularios */
 }
 
 .button-group {
@@ -54,25 +49,24 @@ body {
 
 
 .cta-button-primary {
-    background-color: #3b82f6; 
-    color: #ffffff; 
+    background-color: #2563eb; /* Azul del tema */
+    color: #ffffff;
     border: 1px solid transparent;
 }
 
 .cta-button-primary:hover {
-    background-color: #2563eb;
+    background-color: #1d4ed8; /* Azul más oscuro al pasar el mouse */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 
 .cta-button-secondary {
-    background-color: #ffffff;
-    color: #374151;
-    border: 1px solid #d1d5db;
+    background-color: #374151; /* Fondo gris oscuro, como los inputs */
+    color: #f9fafb; /* Texto claro */
+    border: 1px solid #4b5563; /* Borde gris medio */
 }
 
 .cta-button-secondary:hover {
-    background-color: #f9fafb;
-    border-color: #9ca3af;
+    background-color: #4b5563; /* Un poco más claro al pasar el mouse */
+    border-color: #6b7280;
 }
-

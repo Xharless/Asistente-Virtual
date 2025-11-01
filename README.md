@@ -144,3 +144,8 @@ npm run start
 cd project/frontend
 npm run dev
 ```
+
+
+
+# Cosas instaladas 
+* npm install bcrypt jsonwebtoken

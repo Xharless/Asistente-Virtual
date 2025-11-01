@@ -3,15 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
-import Navbar from './components/navbar';
-// Importación de las páginas
+import Navbar from './components/navbar'
 import Home from './pages/home'
-
-
-
-
-
-
+import Login from './pages/login'
+import Register from './pages/Register'
 
 // Definición de las rutas
 const router = createBrowserRouter([
@@ -27,7 +22,15 @@ const router = createBrowserRouter([
       {
         path: 'Inicio',            // Ruta para la página de inicio
         element: <Home />,         // Componente para la página de inicio
-      }
+      }, 
+      { 
+        path: 'login', 
+        element: <Login /> 
+      },
+      { 
+        path: 'register', 
+        element: <Register /> 
+      },
     ],
   },
 ])

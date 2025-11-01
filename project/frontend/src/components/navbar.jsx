@@ -1,52 +1,73 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 
 function Navbar() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsAuthenticated(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+        navigate('/login'); // Redirige al login después de cerrar sesión
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-container">
                 <div className="navbar-content">
                     <div className="navbar-logo">
-                        <a href="/" className="logo-link">
+                        <Link to="/" className="logo-link">
                         🏛️ TramitaFácil
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="nav-links-container">
                         <div className="nav-links">
-                            <a 
-                                href="/" 
+                            <Link 
+                                to="/" 
                                 className="nav-link"
                             >
                                 Home
-                            </a>
-                            <a 
-                                href="/guia-ojv" 
+                            </Link>
+                            <Link 
+                                to="/guia-ojv" 
                                 className="nav-link"
                             >
                                 Guía OJV
-                            </a>
-                            <a 
-                                href="/generador" 
+                            </Link>
+                            <Link 
+                                to="/generador" 
                                 className="nav-link"
                             >
                                 Generador Docs
-                            </a>
-                            <a 
-                                href="/diccionario" 
+                            </Link>
+                            <Link 
+                                to="/diccionario" 
                                 className="nav-link"
                             >
                                 Diccionario
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
                     <div className="login-button-container">
-                        <a 
-                            href="/login" 
-                            className="login-button"
-                        >
-                            Iniciar Sesión
-                        </a>
+                        {isAuthenticated ? (
+                            <button onClick={handleLogout} className="logout-button">
+                                Cerrar Sesión
+                            </button>
+                        ) : (
+                            <Link to="/login" className="login-button">
+                                Iniciar Sesión
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
@@ -55,4 +76,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
