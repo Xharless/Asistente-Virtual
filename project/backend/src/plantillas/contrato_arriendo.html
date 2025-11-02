@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contrato de Arriendo</title>
+    <style>
+        body {
+            /* Estilos básicos para un documento legal */
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            margin: 2.5cm; /* Márgenes típicos */
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            font-size: 14pt;
+            text-decoration: underline;
+            margin-bottom: 2rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+        .clausula {
+            font-weight: bold;
+        }
+        /* Estos son los 'placeholders' que reemplazaremos */
+        .placeholder {
+            /* He quitado el estilo de color/itálica 
+               para que el PDF final se vea limpio */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>CONTRATO DE ARRENDAMIENTO</h1>
+
+    <p>
+        En la ciudad de {{ciudad_contrato}}, a {{fecha_contrato}}, entre don(ña)
+        <strong>{{nombre_arrendador}}</strong>, de nacionalidad {{nacionalidad_arrendador}},
+        cédula de identidad número {{rut_arrendador}}, domiciliado(a) en {{domicilio_arrendador}},
+        en adelante el "arrendador"; y don(ña) <strong>{{nombre_arrendatario}}</strong>,
+        de nacionalidad {{nacionalidad_arrendatario}}, cédula de identidad número
+        {{rut_arrendatario}}, domiciliado(a) en {{domicilio_arrendatario}}, en adelante el "arrendatario",
+        se ha convenido el siguiente contrato de arrendamiento:
+    </p>
+
+    <p>
+        <span class="clausula">PRIMERO:</span> El arrendador da en arrendamiento al arrendatario,
+        quien acepta para sí, la propiedad ubicada en {{direccion_propiedad}},
+        en la comuna de {{comuna_propiedad}}.
+    </p>
+
+    <p>
+        <span class="clausula">SEGUNDO:</span> La renta mensual de arrendamiento será la suma de
+        <strong>$ {{monto_renta_pesos}} pesos</strong> ({{monto_renta_palabras}}),
+        que se pagará por anticipado dentro de los primeros cinco días de cada mes.
+    </p>
+
+    <!-- ... Agrega aquí el resto de las cláusulas ... -->
+
+    <p>
+        Para constancia, firman las partes en dos ejemplares de igual tenor.
+    </p>
+
+    <br><br><br>
+
+    <p>___________________________<br>
+    <strong>{{nombre_arrendador}}</strong><br>
+    ARRENDADOR
+    </p>
+
+    <br><br><br>
+
+    <p>___________________________<br>
+    <strong>{{nombre_arrendatario}}</strong><br>
+    ARRENDATARIO
+    </p>
+</body>
+</html>
+

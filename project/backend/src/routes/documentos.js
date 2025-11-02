@@ -1,11 +1,9 @@
 import express from 'express';
-import { generarDocumento } from '../controllers/documentoController.js';
+import { generarDocumento, getPlantillas } from '../controllers/documentoController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
-console.log(generarDocumento)
-const router = express.Router();
 
-// POST /api/documentos/generar
-// Ruta protegida para generar un documento. Solo usuarios autenticados.
-router.post('/generar', authMiddleware, generarDocumento);
+const router = express.Router();
+router.get('/plantillas', authMiddleware, getPlantillas);
+router.post('/generar/:plantillaId', authMiddleware, generarDocumento);
 
 export default router;

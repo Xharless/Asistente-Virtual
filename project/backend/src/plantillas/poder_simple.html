@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Poder Simple</title>
+    <style>
+        body { 
+            font-family: 'Times New Roman', serif; 
+            margin: 2.5cm; 
+            font-size: 12pt;
+        }
+        h1 { 
+            text-align: center; 
+            text-decoration: underline; 
+            font-size: 14pt;
+            margin-bottom: 3rem;
+        }
+        p { 
+            text-align: justify; 
+            line-height: 1.5; 
+            margin-bottom: 1.5rem;
+        }
+        .firma {
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>PODER SIMPLE</h1>
+    
+    <p>
+        Yo, <strong>{{nombre_cliente}}</strong>, cédula de identidad número 
+        <strong>{{rut_cliente}}</strong>, domiciliado(a) en 
+        {{domicilio_cliente}}, por el presente instrumento, confiero poder simple 
+        pero tan amplio y bastante como en derecho se requiera a don(a) 
+        <strong>{{nombre_abogado}}</strong>, cédula de identidad número 
+        <strong>{{rut_abogado}}</strong>, para que en mi nombre y
+        representación tramite el siguiente asunto: 
+        <strong>{{descripcion_caso}}</strong>.
+    </p>
+
+    <p>
+        El presente poder se otorga en la ciudad de {{ciudad_firma}}, a {{fecha_firma}}.
+    </p>
+    
+    <div class="firma">
+        <p>_________________________</p>
+        <p>
+            <strong>{{nombre_cliente}}</strong><br>
+            C.I: {{rut_cliente}}
+        </p>
+    </div>
+</body>
+</html>
