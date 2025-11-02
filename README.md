@@ -152,3 +152,4 @@ npm run dev
 * npm install bcrypt jsonwebtoken en backend
 * npm install jwt-decode en frontend
 * npm install react-icons en frontend
+* npm install puppeteer en backend
