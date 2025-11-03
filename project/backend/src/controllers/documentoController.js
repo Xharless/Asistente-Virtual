@@ -2,65 +2,20 @@ import puppeteer from 'puppeteer';
 import fs from 'fs/promises'; 
 import path from 'path'; // Para manejar rutas de archivos
 import { fileURLToPath } from 'url';
+import pool from '../database/index.js'; // Importamos la conexión a la BD
 
 // Helper para obtener la ruta absoluta (necesario en ES Modules)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// (Esta función busca el archivo HTML basado en el ID)
-const getPlantillaPath = (plantillaId) => {
-    // Aquí puedes tener tu lógica.
-    // Ej: buscar en la BD el nombre del archivo.
-    // Por ahora, lo hacemos simple:
-    if (plantillaId === '1') {
-        // Esta es la plantilla que tienes abierta
-        return path.resolve(__dirname, '../plantillas/contrato_arriendo.html');
-    }
-    if (plantillaId === '2') {
-        // (Deberías crear este archivo 'poder_simple.html' 
-        //  con placeholders {{...}} en la carpeta plantillas)
-        return path.resolve(__dirname, '../plantillas/poder_simple.html');
-    }
-    return null;
-};
-
 const getPlantillas = async (req, res) => {
     try {
-        // Por ahora, devolvemos una lista estática.
-        // En el futuro, esto podría venir de una base de datos.
-        // ¡IMPORTANTE! La estructura ahora coincide con lo que el frontend espera.
-        const plantillas = [
-            { 
-                id: '1', 
-                nombre_plantilla: 'Contrato de Arriendo',
-                descripcion: 'Genera un contrato de arriendo estándar para bienes inmuebles.',
-                campos_requeridos: [
-                    { nombre_campo: 'nombre_arrendador', label: 'Nombre del Arrendador', tipo: 'text' },
-                    { nombre_campo: 'rut_arrendador', label: 'RUT del Arrendador', tipo: 'text' },
-                    { nombre_campo: 'nombre_arrendatario', label: 'Nombre del Arrendatario', tipo: 'text' },
-                    { nombre_campo: 'rut_arrendatario', label: 'RUT del Arrendatario', tipo: 'text' },
-                    { nombre_campo: 'direccion_propiedad', label: 'Dirección de la Propiedad', tipo: 'text' },
-                    { nombre_campo: 'monto_renta', label: 'Monto de la Renta (CLP)', tipo: 'number' },
-                    { nombre_campo: 'fecha_inicio', label: 'Fecha de Inicio del Contrato', tipo: 'date' },
-                ]
-            },
-            { 
-                id: '2', 
-                nombre_plantilla: 'Poder Simple',
-                descripcion: 'Otorga facultades a un tercero para realizar trámites específicos.',
-                campos_requeridos: [
-                    { nombre_campo: 'nombre_mandante', label: 'Nombre de quien otorga el poder (Mandante)', tipo: 'text' },
-                    { nombre_campo: 'rut_mandante', label: 'RUT del Mandante', tipo: 'text' },
-                    { nombre_campo: 'nombre_mandatario', label: 'Nombre de quien recibe el poder (Mandatario)', tipo: 'text' },
-                    { nombre_campo: 'rut_mandatario', label: 'RUT del Mandatario', tipo: 'text' },
-                    { nombre_campo: 'facultades', label: 'Facultades Otorgadas (describir)', tipo: 'textarea' },
-                ]
-            }
-        ];
-        res.json(plantillas);
+        // Ahora consultamos las plantillas directamente desde la base de datos
+        const result = await pool.query('SELECT id, nombre_plantilla, descripcion, campos_requeridos FROM plantillas_documentos ORDER BY nombre_plantilla');
+        res.json(result.rows);
     } catch (err) {
         console.error("Error al obtener plantillas:", err.message);
-        res.status(500).send("Error interno del servidor.");
+        res.status(500).json({ error: "Error interno del servidor." });
     }
 };
 
@@ -72,11 +27,13 @@ const generarDocumento = async (req, res) => {
         // 2. Obtenemos TODOS los datos del formulario
         const datos = req.body; 
 
-        // 3. Buscamos la ruta del archivo HTML
-        const plantillaPath = getPlantillaPath(plantillaId);
-        if (!plantillaPath) {
+        // 3. Buscamos la información de la plantilla en la BD, incluyendo el nombre del archivo
+        const plantillaResult = await pool.query('SELECT archivo_plantilla FROM plantillas_documentos WHERE id = $1', [plantillaId]);
+        if (plantillaResult.rows.length === 0) {
             return res.status(404).json({ error: "Plantilla no encontrada." });
         }
+        const nombreArchivo = plantillaResult.rows[0].archivo_plantilla;
+        const plantillaPath = path.resolve(__dirname, `../plantillas/${nombreArchivo}`);
 
         // 4. Leer la plantilla HTML
         let htmlContent = await fs.readFile(plantillaPath, 'utf8');
@@ -86,9 +43,14 @@ const generarDocumento = async (req, res) => {
             const placeholder = new RegExp(`{{${key}}}`, 'g');
             htmlContent = htmlContent.replace(placeholder, datos[key] || ''); // Usamos || '' por si un dato viene vacío
         });
+
+        // 6. Reemplazar placeholders automáticos como la fecha
+        const fechaActual = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+        htmlContent = htmlContent.replace(/{{fecha_contrato}}/g, fechaActual);
+        htmlContent = htmlContent.replace(/{{fecha_firma}}/g, fechaActual);
         
-        // 6. Usar Puppeteer para generar el PDF
-        const browser = await puppeteer.launch({ 
+        // 7. Usar Puppeteer para generar el PDF
+        const browser = await puppeteer.launch({
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'] 
         });
@@ -108,14 +70,14 @@ const generarDocumento = async (req, res) => {
         });
         await browser.close();
 
-        // 7. Enviar el PDF como respuesta
+        // 8. Enviar el PDF como respuesta
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename=documento_generado.pdf');
         res.send(pdfBuffer);
 
     } catch (err) {
         console.error("Error al generar documento:", err.message);
-        res.status(500).send("Error interno del servidor al generar el PDF.");
+        res.status(500).json({ error: "Error interno del servidor al generar el PDF." });
     }
 };
 

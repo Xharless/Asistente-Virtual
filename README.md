@@ -120,10 +120,17 @@ VITE_API_URL=http://localhost:5000/
 
 ⚠️ IMPORTANTE: se debe tener PostgreSQL instalado y configurado con un **usuario y contraseña válidos**, los cuales deben ser agregados en el archivo .env (**Configuración del entorno**). 
 
-Creae tablas: Antes de ejecutar el siguiente código en terminal, se debe modificar el usuario:
+Crear tablas: Antes de ejecutar el siguiente código en terminal, se debe modificar el usuario.
+
+**Nota para usuarios de Windows:** Es posible que veas errores de codificación (caracteres extraños en acentos). Para solucionarlo, ejecuta los comandos de la siguiente manera para forzar la codificación UTF-8:
 ```bash
-psql -U "usuario" -d asistente_db -f project/backend/src/database/init.sql
-# Hay que cambiar el "usuario" y pedirá la contraseña de Postgres por terminal
+# En Windows (PowerShell o CMD)
+C:\> $env:PGCLIENTENCODING="UTF8"; psql -U "usuario" -d asistente_db -f project/backend/src/database/init.sql
+C:\> $env:PGCLIENTENCODING="UTF8"; psql -U "usuario" -d asistente_db -f project/backend/src/database/seed.sql
+
+# En Linux o macOS
+$ PGCLIENTENCODING=UTF8 psql -U "usuario" -d asistente_db -f project/backend/src/database/init.sql
+$ PGCLIENTENCODING=UTF8 psql -U "usuario" -d asistente_db -f project/backend/src/database/seed.sql
 ```
 ### 🏆 Ejecución del Proyecto
 

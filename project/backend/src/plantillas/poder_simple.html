@@ -29,25 +29,30 @@
     <h1>PODER SIMPLE</h1>
     
     <p>
-        Yo, <strong>{{nombre_cliente}}</strong>, cédula de identidad número 
-        <strong>{{rut_cliente}}</strong>, domiciliado(a) en 
-        {{domicilio_cliente}}, por el presente instrumento, confiero poder simple 
+        Yo, <strong>{{nombre_mandante}}</strong>, cédula de identidad número 
+        <strong>{{rut_mandante}}</strong>, domiciliado(a) en
+        {{domicilio_mandante}}, por el presente instrumento, confiero poder simple 
         pero tan amplio y bastante como en derecho se requiera a don(a) 
-        <strong>{{nombre_abogado}}</strong>, cédula de identidad número 
-        <strong>{{rut_abogado}}</strong>, para que en mi nombre y
+        <strong>{{nombre_mandatario}}</strong>, cédula de identidad número
+        <strong>{{rut_mandatario}}</strong>, para que en mi nombre y
         representación tramite el siguiente asunto: 
-        <strong>{{descripcion_caso}}</strong>.
+        <strong>{{descripcion_asunto}}</strong>.
     </p>
 
     <p>
         El presente poder se otorga en la ciudad de {{ciudad_firma}}, a {{fecha_firma}}.
     </p>
+
+    <p>
+        Declaro que este poder se otorga de manera libre y voluntaria, sin mediar error ni coerción alguna.
+    </p>
+
     
     <div class="firma">
         <p>_________________________</p>
         <p>
-            <strong>{{nombre_cliente}}</strong><br>
-            C.I: {{rut_cliente}}
+            <strong>{{nombre_mandante}}</strong><br>
+            C.I: {{rut_mandante}}
         </p>
     </div>
 </body>

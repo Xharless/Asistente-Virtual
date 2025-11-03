@@ -7,6 +7,7 @@ function GeneradorDocumentos() {
     const [plantillas, setPlantillas] = useState([]); // Lista de plantillas de la BD
     const [plantillaSeleccionada, setPlantillaSeleccionada] = useState(null); // La plantilla escogida
     const [formData, setFormData] = useState({}); // Objeto para los datos del formulario
+    const [formErrors, setFormErrors] = useState({}); // Objeto para los errores de validación
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -14,6 +15,48 @@ function GeneradorDocumentos() {
     // Obtenemos el token y la URL de la API (ajusta localhost:5000 si es necesario)
     const token = localStorage.getItem('token');
     const VITE_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+    // --- FUNCIÓN DE VALIDACIÓN DE RUT CHILENO ---
+    const validarRut = (rut) => {
+        if (!rut || typeof rut !== 'string') return false;
+        const rutLimpio = rut.replace(/[^0-9kK]/g, '').toUpperCase();
+        if (rutLimpio.length < 2) return false;
+
+        const cuerpo = rutLimpio.slice(0, -1);
+        const dv = rutLimpio.slice(-1);
+        
+        let suma = 0;
+        let multiplo = 2;
+
+        for (let i = cuerpo.length - 1; i >= 0; i--) {
+            suma += parseInt(cuerpo.charAt(i), 10) * multiplo;
+            multiplo = multiplo === 7 ? 2 : multiplo + 1;
+        }
+
+        const dvEsperado = 11 - (suma % 11);
+        const dvCalculado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+
+        return dv === dvCalculado;
+    };
+
+    // --- FUNCIÓN PARA FORMATEAR EL RUT MIENTRAS SE ESCRIBE ---
+    const formatearRut = (rut) => {
+        if (!rut) return "";
+        // 1. Limpiar el RUT de todo excepto números y la letra K
+        const rutLimpio = rut.replace(/[^0-9kK]/g, '').toUpperCase();
+        
+        // 2. Separar el cuerpo del dígito verificador
+        let cuerpo = rutLimpio.slice(0, -1);
+        let dv = rutLimpio.slice(-1);
+
+        // 3. Si no hay cuerpo, no formatear aún
+        if (cuerpo.length === 0) return dv;
+
+        // 4. Formatear el cuerpo con puntos
+        cuerpo = new Intl.NumberFormat('es-CL').format(cuerpo);
+
+        return `${cuerpo}-${dv}`;
+    };
 
     // --- 1. OBTENER PLANTILLAS AL CARGAR LA PÁGINA ---
     useEffect(() => {
@@ -79,13 +122,26 @@ function GeneradorDocumentos() {
     };
 
     // --- 3. MANEJAR CAMBIO EN LOS INPUTS DEL FORMULARIO ---
-    // (Esta función es igual a la tuya, ¡estaba perfecta!)
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+
+        // Validar RUT en tiempo real si el campo es de tipo RUT
+        if (name.includes('rut')) {
+            const rutFormateado = formatearRut(value);
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: rutFormateado
+            }));
+
+            if (value && !validarRut(rutFormateado)) {
+                setFormErrors(prev => ({ ...prev, [name]: 'El RUT ingresado no es válido.' }));
+            } else {
+                setFormErrors(prev => ({ ...prev, [name]: undefined }));
+            }
+        } else {
+            // Para otros campos, solo actualiza el valor
+            setFormData(prevState => ({ ...prevState, [name]: value }));
+        }
     };
 
     // --- 4. ENVIAR EL FORMULARIO PARA GENERAR PDF ---
@@ -93,6 +149,13 @@ function GeneradorDocumentos() {
         e.preventDefault();
         setError('');
         setIsLoading(true);
+
+        // Revisar si hay errores de validación antes de enviar
+        if (Object.values(formErrors).some(err => err)) {
+            setError('Por favor, corrige los errores en el formulario antes de continuar.');
+            setIsLoading(false);
+            return;
+        }
 
         try {
             // ¡URL DINÁMICA! Usamos el ID de la plantilla seleccionada
@@ -177,6 +240,7 @@ function GeneradorDocumentos() {
                                     name={campo.nombre_campo}
                                     value={formData[campo.nombre_campo] || ''}
                                     onChange={handleChange}
+                                    className={formErrors[campo.nombre_campo] ? 'input-error' : ''}
                                     required
                                 />
                             ) : (
@@ -185,6 +249,7 @@ function GeneradorDocumentos() {
                                 name={campo.nombre_campo}
                                 value={formData[campo.nombre_campo] || ''}
                                 onChange={handleChange}
+                                className={formErrors[campo.nombre_campo] ? 'input-error' : ''}
                                 required 
                                 />
                             )}
