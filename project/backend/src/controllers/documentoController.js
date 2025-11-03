@@ -8,6 +8,17 @@ import pool from '../database/index.js'; // Importamos la conexión a la BD
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// --- FUNCIÓN AUXILIAR PARA FORMATEAR FECHAS A DD-MM-AAAA ---
+const formatearFecha = (fecha) => {
+    if (!fecha) return '';
+    // Si la fecha es un string (ej: '2024-07-26'), la convertimos a objeto Date
+    // El 'T00:00:00' evita problemas de zona horaria (UTC)
+    const d = new Date(typeof fecha === 'string' ? `${fecha}T00:00:00` : fecha);
+    const dia = String(d.getDate()).padStart(2, '0');
+    const mes = String(d.getMonth() + 1).padStart(2, '0'); // getMonth() es 0-indexado
+    return `${dia}-${mes}-${d.getFullYear()}`;
+};
+
 const getPlantillas = async (req, res) => {
     try {
         // Ahora consultamos las plantillas directamente desde la base de datos
@@ -28,7 +39,7 @@ const generarDocumento = async (req, res) => {
         const datos = req.body; 
 
         // 3. Buscamos la información de la plantilla en la BD, incluyendo el nombre del archivo
-        const plantillaResult = await pool.query('SELECT archivo_plantilla FROM plantillas_documentos WHERE id = $1', [plantillaId]);
+        const plantillaResult = await pool.query('SELECT archivo_plantilla, campos_requeridos FROM plantillas_documentos WHERE id = $1', [plantillaId]);
         if (plantillaResult.rows.length === 0) {
             return res.status(404).json({ error: "Plantilla no encontrada." });
         }
@@ -38,16 +49,22 @@ const generarDocumento = async (req, res) => {
         // 4. Leer la plantilla HTML
         let htmlContent = await fs.readFile(plantillaPath, 'utf8');
 
-        // 5. Reemplazar los placeholders (ej: {{nombre_arrendador}}) con los datos
+        // 5. Reemplazar los placeholders con los datos, formateando las fechas
+        const campos = plantillaResult.rows[0].campos_requeridos;
         Object.keys(datos).forEach(key => {
             const placeholder = new RegExp(`{{${key}}}`, 'g');
-            htmlContent = htmlContent.replace(placeholder, datos[key] || ''); // Usamos || '' por si un dato viene vacío
+            const campoDef = campos.find(c => c.nombre_campo === key);
+            let valor = datos[key] || '';
+
+            // Si el campo es de tipo 'date', lo formateamos
+            if (campoDef && campoDef.tipo === 'date' && valor) {
+                valor = formatearFecha(valor);
+            }
+            htmlContent = htmlContent.replace(placeholder, valor);
         });
 
         // 6. Reemplazar placeholders automáticos como la fecha
-        const fechaActual = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
-        htmlContent = htmlContent.replace(/{{fecha_contrato}}/g, fechaActual);
-        htmlContent = htmlContent.replace(/{{fecha_firma}}/g, fechaActual);
+        htmlContent = htmlContent.replace(/{{fecha_actual}}/g, formatearFecha(new Date()));
         
         // 7. Usar Puppeteer para generar el PDF
         const browser = await puppeteer.launch({
