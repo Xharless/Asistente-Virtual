@@ -79,6 +79,7 @@ cd Asistente-Virtual
 * pg → Cliente para PostgreSQL.
 * bcrypt → Hasheo de contraseña.
 * jsonwebtoken → Token para sesión.
+* puppeteer → Control del navegador con DevTools
 * Otros módulos → Dependencias adicionales según el proyecto.
 
 Instalación (Terminal):
@@ -156,7 +157,6 @@ npm run dev
 
 
 # Cosas instaladas 
-* npm install bcrypt jsonwebtoken en backend
-* npm install jwt-decode en frontend
-* npm install react-icons en frontend
+
+
 * npm install puppeteer en backend
