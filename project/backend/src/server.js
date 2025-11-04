@@ -3,12 +3,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import pool from "./database/index.js"; 
 import authRoutes from './routes/auth.js';
+import documentoRoutes from './routes/documentos.js'; // 1. Importar rutas de documentos
 
 dotenv.config({ path: '.env' });
 const app = express();
 app.use(express.json()); 
 app.use(cors());
 app.use('/api/auth', authRoutes);
+app.use('/api/documentos', documentoRoutes); // 2. Usar las nuevas rutas
 
 
 app.get("/", (req, res) => {
@@ -28,4 +30,3 @@ app.listen(PORT, async () => {
     }
     console.log(`Servidor corriendo en puerto ${PORT}`);
 });
-

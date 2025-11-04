@@ -7,6 +7,7 @@ import Navbar from './components/navbar'
 import Home from './pages/home'
 import Login from './pages/login'
 import Register from './pages/Register'
+import Generador from './pages/Generador'
 
 // Definición de las rutas
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         path: 'register', 
         element: <Register /> 
       },
+      {
+        path: 'generador',
+        element: <Generador />,
+      }
     ],
   },
 ])
