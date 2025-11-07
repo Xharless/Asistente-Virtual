@@ -161,3 +161,6 @@ npm run dev
 
 * npm install puppeteer en backend
 * npm install pdf-parser  en backend
+* correr el archivo poblar.js para subir los elementos al diccionario de la BD, debes colocar los elementos necesarios en el .env del backend
+* npm install axios react-icons en frontend 
+* npm install axios en frontend
