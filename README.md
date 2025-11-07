@@ -160,3 +160,4 @@ npm run dev
 
 
 * npm install puppeteer en backend
+* npm install pdf-parser  en backend
