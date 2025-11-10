@@ -1,0 +1,1612 @@
+[
+  {
+    "termino": "A sus antecedentes",
+    "definicion": "que se incluya el documento en la causa o expediente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Agréguese a los autos",
+    "definicion": "que el documento o escrito se incluya en la causa o expediente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Bajo apercibimiento de no tenerse por presentado",
+    "definicion": "si no se cumple con lo ordenado y dentro del plazo que se señala, el tribunal no considerará la presentación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Como se pide",
+    "definicion": "el tribunal acepta lo pedido en los términos solicitados.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Con arreglo a derecho",
+    "definicion": "conforme a lo que establece la ley.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Condénese en costas",
+    "definicion": "debe pagar los gastos asociados al juicio. Ejemplo: honorarios del receptor que notifica, honorarios de los abogados, etc.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Dese cuenta a la sala designada",
+    "definicion": "los antecedentes pasarán a la Sala de la Corte (Corte de Apelaciones o Corte Suprema) que corresponda para estudiarlos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Despáchese mandamiento de ejecución y embargo",
+    "definicion": "resolución que dicta un juez que conoce del pro-cedimiento ejecutivo. En él se requiere de pago y se ordena el embargo de bienes del deudor en cantidad suficiente para cubrir la deuda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Estese a lo resuelto",
+    "definicion": "el tribunal no se pronunciará sobre lo solicitado porque ya resolvió sobre ello.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "En mérito",
+    "definicion": "en consideración de, teniendo en cuenta que.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "En mérito de autos",
+    "definicion": "en consideración de los antecedentes e información que ya se encuentran en la causa o expediente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ha lugar",
+    "definicion": "se acepta lo que se pide al tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "No ha lugar",
+    "definicion": "no se acepta lo que se pide al tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ocúrrase ante quien corresponda",
+    "definicion": "dirigir lo que se está pidiendo donde y ante quien corresponda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Previo a proveer",
+    "definicion": "el juez necesita más antecedentes antes de decidir.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Solicítese lo que en derecho corresponda",
+    "definicion": "lo que se pidió no es admisible por lo que debe corregirse y hacerse la petición correcta.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Suficiente y atento oficio remisor",
+    "definicion": "el documento presentado sirve para comunicar el asunto y/o enviar determinada información a alguna persona o institución, sin necesidad de otra formalidad.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Téngase presente",
+    "definicion": "lo presentado se considerará en el momento correspondiente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Todo lo obrado",
+    "definicion": "lo que ha ocurrido en la causa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Tráiganse los autos en relación",
+    "definicion": "la causa está lista para ser vista por los ministros de la Corte de Apelaciones o Corte Suprema.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Venga en forma",
+    "definicion": "la solicitud y/o documentación presentada debe cumplir con las formalidades legales.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Abandono del procedimiento",
+    "definicion": "término de la causa que se produce cuando las partes no realizan ninguna gestión que sirva para avanzar en el juicio durante 6 meses contados desde la última resolución.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Abogado",
+    "definicion": "profesional licenciado en ciencias jurídicas y titulado ante la Corte Suprema que cumple los requisitos legales para el ejercicio de la profesión y tiene la facultad de representar los intereses de las personas ante los tribunales.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Abogado integrante",
+    "definicion": "abogado que cumple ciertos requisitos para integrar una sala de Corte de Apelaciones o de la Corte Suprema. Allí conoce o resuelve una causa cuando un ministro se ausenta o se encuentra inhabilitado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acta",
+    "definicion": "documento en que se registra lo sucedido en la audiencia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Actuación",
+    "definicion": "diligencia o documento de la causa // resolución judicial dictada en una causa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Alegato",
+    "definicion": "exposición oral que realizan los abogados de las partes ante el tribunal con el objetivo de representar los intereses de estas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Alzamiento de medidas",
+    "definicion": "resolución que levanta o deja sin efecto una medida de prevención vigente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Apercibimiento",
+    "definicion": "comunicación que advierte las consecuencias de determinadas actuaciones u omisiones.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Archivero Judicial",
+    "definicion": "ministro de fe que guarda y cuida documentos (por ejemplo: copias de sentencias antiguas, expedientes judiciales, entre otros) y otorga copias de estos a las personas que lo soliciten.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Arresto",
+    "definicion": "privación de libertad temporal que decreta el juez para que se cumpla una resolución judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Audiencia",
+    "definicion": "actuación realizada en el tribunal y en presencia del juez, quien escucha las peticiones de las partes y adopta una decisión sobre el asunto discutido.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Audiencia de juicio",
+    "definicion": "actuación judicial en la que se presentan las pruebas de un juicio. En ella se puede dictar veredicto o sentencia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Audiencia preparatoria",
+    "definicion": "primera audiencia que fija un tribunal en donde se cita al demandante y demandado para exponer una síntesis de sus intereses, determinar el objeto de juicio, ofrecer las pruebas y fijar la audiencia de juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Autos",
+    "definicion": "conjunto de actuaciones de la causa // el expediente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Bienes inmuebles",
+    "definicion": "cosas que no pueden trasladarse de un lugar a otro o que forman parte permanente de un terreno (por ejemplo: casa, departamento, terreno).",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Bienes muebles",
+    "definicion": "cosas que pueden moverse de un lugar a otro, ya sea por si mismas -como los animales- o por una fuerza externa, como un auto.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Caducidad",
+    "definicion": "extinción de ciertos derechos por no haberlos ejercido durante cierto plazo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Carátula",
+    "definicion": "primera hoja de un expediente que contiene los datos principales de la causa (nombre de las partes, tribunal, materia y el número de la causa).",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Casación",
+    "definicion": "recurso para invalidar o anular una sentencia en los casos que señala la ley.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Causa",
+    "definicion": "juicio o procedimiento judicial // expediente físico o digital.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cédula",
+    "definicion": "documento que se entrega o se deja en un domicilio para comunicar una resolución judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Certificación",
+    "definicion": "actuación que realiza el ministro de fe del tribunal en que acredita un hecho determinado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Comparecencia",
+    "definicion": "acto de presentarse ante el juez.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Competencia",
+    "definicion": "facultad que tiene un juez o tribunal para resolver un asunto.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Compulsas",
+    "definicion": "copias originales de un expediente judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Conciliación",
+    "definicion": "mecanismo alternativo para solucionar conflictos entre las partes de un juicio, que reempla- za la decisión del juez, pero tiene la misma exigibilidad y fuerza que la sentencia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Constancia",
+    "definicion": "documento en que se acredita un hecho de la causa o expediente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Contencioso",
+    "definicion": "pleito, litigio, conflicto.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Contestación",
+    "definicion": "respuesta del demandado a la demanda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cónyuge",
+    "definicion": "persona que se encuentra unida a otra por matrimonio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Copia autorizada",
+    "definicion": "copia idéntica de un documento que lleva firma y timbre del ministro de fe.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Corte de Apelaciones",
+    "definicion": "tribunal de segunda instancia integrado por un número variable de jueces denominados \"ministros\". Existen 17 Cortes de Apelaciones en el país.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Corte Marcial",
+    "definicion": "tribunal de segunda instancia que conoce asuntos relacionados con personas ligadas a las Fuerzas Armadas y Carabineros de Chile. Está integrada por dos ministros de la Corte de Apelaciones de Santiago y representantes del Ejército, Fuerza Aérea y Carabineros.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Corte Suprema",
+    "definicion": "tribunal superior del país con sede en Santiago de Chile y que está compuesto por 21 jueces llamados “ministros”.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Costas",
+    "definicion": "gastos asociados al juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Curador",
+    "definicion": "persona que representa los intereses de otra que no puede actuar por sí misma.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Custodia",
+    "definicion": "resguardo de documentos o expedientes que, por su naturaleza, no podrían ser reconstituidos en caso de pérdida.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demanda",
+    "definicion": "forma de exponer al tribunal una situación. En ella se solicita que se reconozcan los derechos que se creen tener.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demandado (a)",
+    "definicion": "sujeto o persona contra quien se presenta una demanda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demandante",
+    "definicion": "persona que presenta una demanda ante el tribunal. En ella expone ciertos hechos y solicita que se le reconozca un derecho.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demandado (a) reconvencional",
+    "definicion": "persona que presenta una demanda y que es objeto de una contrademanda interpuesta por la persona a quien él demandó.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demandante reconvencional",
+    "definicion": "persona que, habiendo sido demandada, realiza una demanda en contra de la persona que lo demandó.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Desarchivo",
+    "definicion": "petición del juez al archivero judicial para que envíe al tribunal una causa que tiene bajo custodia. En el caso de los expedientes digitales es un cambio computacional en el estado de tramitación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Desistimiento",
+    "definicion": "retractarse de la demanda después de que se ha notificado al demandado, con lo que se pierde el derecho de solicitar lo mismo nuevamente. En materia de familia existen excepciones a esta regla.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Digitador (a)",
+    "definicion": "funcionario (a) del Poder Judicial que transcribe las diferentes resoluciones que se dictan en un tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ejecutoriada",
+    "definicion": "causa que ha finalizado todos los trámites legales y que no admite ningún otro recurso ju-dicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Escrito",
+    "definicion": "documento que se presenta en cualquier tribunal para realizar peticiones al juez.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Estado diario",
+    "definicion": "listado de las resoluciones que se dictaron en un determinado día en el tribunal y que se publica en la secretaría de este o en un lugar visible. Desde la fecha de su publicación se entienden notificadas a las partes.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Excepciones",
+    "definicion": "oposiciones que presenta una de las partes para impedir que el proceso siga su curso, paralizándolo o extinguiéndolo definitivamente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Exclusión de la prueba",
+    "definicion": "eliminación de pruebas que realiza un juez en una causa por diversos motivos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Exequátur",
+    "definicion": "autorización previa que debe dar la Corte Suprema para que en Chile se cumpla una resolución dictada por un tribunal extranjero.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Exhortado",
+    "definicion": "tribunal que recibe una solicitud de otro tribunal para que realice una diligencia dentro de su territorio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Exhortante",
+    "definicion": "tribunal que envía una solicitud a otro para que este último realice una diligencia en su propio territorio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Exhorto",
+    "definicion": "solicitud que un tribunal hace a otro para que este último realice una actuación determinada, la que el primero no puede cumplir porque no es competente para realizarla dentro de ese territorio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Expediente",
+    "definicion": "documentos y actuaciones que forman parte de la causa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Extradición",
+    "definicion": "procedimiento por el que las autoridades de um Estado solicitan la entrega de una persona a outro Estado para que pueda ser juzgado o cumpla una pena ya impuesta.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Fiscal Judicial",
+    "definicion": "auxiliar de la administración de justicia que analiza antecedentes judiciales y administrativos del Estado en los casos en que la ley requiera su intervención.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Foja",
+    "definicion": "hoja o página del expediente o causa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Fuero",
+    "definicion": "tribunal al que están sometidas las partes y que según la ley les corresponde.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Garantía",
+    "definicion": "forma de asegurar el cumplimiento de una obligación o el pago de una deuda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Gravamen",
+    "definicion": "limitación que tiene una cosa // perjuicio que sufre una persona con una decisión judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Incompetencia",
+    "definicion": "imposibilidad de un tribunal para conocer de un asunto por tratarse de un tema que le corresponde conocer a otro.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Intervinientes",
+    "definicion": "personas o instituciones que participan en un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Juez(a)",
+    "definicion": "persona con la autoridad para conocer y decidir sobre ciertos asuntos con imparcialidad. Su de-cisión es obligatoria.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Juicio",
+    "definicion": "procedimiento que se sigue ante un juez para resolver una disputa sobre intereses y derechos contrapuestos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Jurisdicción",
+    "definicion": "territorio en que un juez ejerce sus facultades.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Jurisprudencia",
+    "definicion": "conjunto de sentencias de los tribunales y de los argumentos contenidos en ellas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Liquidación",
+    "definicion": "determinación en dinero del valor y monto total de una deuda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Litigantes",
+    "definicion": "partes que intervienen directamente en un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mandatario (a)",
+    "definicion": "persona que recibe un encargo por medio de un mandato.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mandato judicial",
+    "definicion": "contrato que da al mandatario la facultad de comparecer en juicio a nombre de otro.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Medidas cautelares",
+    "definicion": "decisiones del tribunal que se adoptan durante la tramitación de un juicio y que tienen por finalidad resguardar el resultado del mismo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Medios de prueba",
+    "definicion": "formas o modos permitidos por la ley para acreditar en el juicio los hechos que fundamentan el derecho que se reclama.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ministro(a)",
+    "definicion": "juez o jueza de Cortes de Apelaciones y de Corte Suprema.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ministro de fe",
+    "definicion": "persona que tiene la facultad para certificar o acreditar un hecho.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Notificación",
+    "definicion": "comunicación oral o escrita por la que se da a conocer a las partes o a terceros una resolución judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Notificación personal",
+    "definicion": "comunicación de una resolución judicial que se hace en forma directa y personal a una de las partes del juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Notificación por cédula",
+    "definicion": "comunicación que se hace a una persona mediante la entrega de una copia de la resolución y los datos que permitan entenderla. Se puede dejar adherida en la puerta del domicilio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Notificación por el estado diario",
+    "definicion": "comunicación que se hace a las partes en una causa que se incluye en un listado público (o “estado diario”) que se encuentra en la secretaría o en un lugar visible del tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Notificador (a)",
+    "definicion": "persona autorizada legalmente para realizar una notificación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Nulidad",
+    "definicion": "invalidez de un acto. Implica que este deja de tener efectos, es decir, como si nunca se hubiese realizado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Oficio",
+    "definicion": "comunicación escrita que un tribunal envía a una institución o entidad.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Orden de no innovar (ONI)",
+    "definicion": "resolución del juez de un tribunal superior que suspende los efectos de una resolución o paraliza su cumplimiento hasta que se resuelva el asunto que originó el proceso.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Otrosí",
+    "definicion": "petición adicional a la solicitud principal presentada por escrito por una de las partes interesadas en una causa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Partes",
+    "definicion": "personas naturales o jurídicas que intervienen en un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Patrocinante",
+    "definicion": "abogado (a) al cual se le encomendó la defensa de los derechos de una persona en un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Patrocinio",
+    "definicion": "acto por el cual una persona encomienda a un abogado(a) la defensa de sus derechos en juicio u otra gestión judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Pericia",
+    "definicion": "estudio especializado sobre una determinada materia redactado para ser presentado en un juicio. Es elaborado por un experto llamado \"perito\".",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Perito",
+    "definicion": "experto en una ciencia o arte que informa al tribunal el resultado del estudio de un asunto debatido y que sirve de prueba en el juicio. Puede ser nombrado por el tribunal o propuesto por las mismas partes.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Pleno",
+    "definicion": "máximo órgano representativo de la Corte Suprema o de las Cortes de Apelaciones integrado por todos sus ministros y que se reúne en sesiones semanales para conocer y abordar temas administrativos y los demás que le encomienda la ley.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Poder",
+    "definicion": "facultad para representar a una persona en juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prescripción",
+    "definicion": "forma de adquirir cosas ajenas o de extinguir acciones o derechos ajenos por el transcurso del tiempo. Deben concurrir además otros requisitos establecidos por la ley.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Primera instancia",
+    "definicion": "primera fase de conocimiento de un juicio. Las resoluciones de esta etapa pueden ser apeladas y revisadas por el tribunal superior.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prueba",
+    "definicion": "medios por los cuales las partes buscan convencer al tribunal sobre sus pretensiones.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Rebeldía",
+    "definicion": "sanción que se aplica por no comparecer ante el tribunal en la forma o plazos establecidos por él.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso",
+    "definicion": "acción que concede la ley al interesado para reclamar en contra de resoluciones. Puede ser presentada ante el juez que la dictó o ante su superior jerárquico.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso de Amparo",
+    "definicion": "acción que busca asegurar la libertad de cualquier persona que esté detenida con infracción a la Constitución o a la ley, o que sufra otra privación, perturbación o amenaza en su derecho a la libertad personal y seguridad individual. ",
+    "referencia_legal": "Artículo 21 Constitución Política de la República"
+  },
+  {
+    "termino": "Recurso de Amparo Económico",
+    "definicion": "acción especial que protege la garantía de la libertad económica, es decir, el derecho a desarrollar actividades económicas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso de Apelación",
+    "definicion": "acción que se presenta ante el tribunal superior del que dictó una resolución para que esta se modifique con arreglo a derecho.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso de Casación",
+    "definicion": "acción que tiene por objeto anular una sentencia dictada con infracción a la ley o emanada de un procedimiento viciado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso de Protección",
+    "definicion": "acción que la Constitución otorga a las personas que, como consecuencia de actos u omisiones arbitrarias o ilegales, sufren privación, perturbación o amenaza a sus derechos fundamentales. ",
+    "referencia_legal": "Artículos 19 y 20 Constitución Política de la República"
+  },
+  {
+    "termino": "Recurso de Revisión",
+    "definicion": "acción que se interpone ante la Corte Suprema para revisar una sentencia que se ha sustentado en base a argumentos viciados.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Relator (a)",
+    "definicion": "auxiliar de la administración de justicia encargado de poner las causas judiciales en conocimiento de los ministros de las Cortes de Apelaciones y Corte Suprema.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Reposición",
+    "definicion": "recurso por el que se pide a un tribunal que modifique una resolución que él mismo dictó.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Resolución",
+    "definicion": "actuación de un tribunal que tiene por objeto resolver un asunto sometido a su decisión (sentencia) o simplemente dar curso al procedimiento.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "RIT",
+    "definicion": "abreviación de “Rol interno del tribunal”. Número con el que se identifica una causa, según su orden de ingreso al sistema informático de un tribunal específico. Comienza cada año desde el 1 y se indica el año en curso, por lo que se repite entre tribunales. Ejemplo: RIT 2-2018.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Rol",
+    "definicion": "número con el que se identifica una causa en una Corte o tribunal no reformado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "RUC",
+    "definicion": "abreviación de “Rol único de causas”. Número único (que no se repite entre tribunales) con el que se identifica una causa en los sistemas informáticos de tramitación. Ejemplo: 15-9-1329-1. En las causas penales el RUC lo crea el Ministerio Público.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Segunda instancia",
+    "definicion": "segunda fase de conocimiento de un juicio realizada por las Cortes de Apelaciones o la Corte Suprema.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sentencia",
+    "definicion": "resolución judicial que decide definitivamente el pleito o causa en cualquier instancia o recurso.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Testigo",
+    "definicion": "persona (distinta de las partes) que declara sobre un hecho en un procedimiento judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Tramitación",
+    "definicion": "todas las diligencias y trámites que sigue la causa en el tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Transacción",
+    "definicion": "contrato en que las partes terminan extrajudicialmente un conflicto pendiente, o evitan uno posible.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Traslado",
+    "definicion": "acto por el que el juez da la oportunidad a la contraparte para que comparezca y conteste.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Tribunal",
+    "definicion": "órgano público encargado de resolver conflictos judiciales a través de decisiones que gozan de la fuerza para hacerlas cumplir.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Tribunal de origen",
+    "definicion": "tribunal donde se inició la tramitación de un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Vistos",
+    "definicion": "expresión que se utiliza en las resoluciones judiciales para describir los antecedentes del juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acuerdo de unión civil (AUC)",
+    "definicion": "contrato celebrado entre dos personas que comparten un hogar con el propósito de regular los efectos jurídicos derivados de su vida afectiva en común Tiene carácter estable y permanente, y su estado civil se denomina “conviviente civil”",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Adopción",
+    "definicion": "acto judicial mediante el cual se le proporciona a un niño, niña o adolescente un nuevo vínculo de parentesco Así, se le vincula con nuevos padres y familia que le brindan afecto, protección y cuidados cuando ello no pueda ser proporcionado por la familia de origen",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Alimentos",
+    "definicion": "derecho que tiene una persona para exigir de otra lo necesario para subsistir Se funda en el vínculo de parentesco o matrimonio Ello comprende no solo la alimentación propiamente tal, sino también otras prestaciones como vestuario, habitación, salud, educación, entre otras",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Alimentos definitivos",
+    "definicion": "aquellos que se establecen en una sentencia definitiva dictada por un juzgado de familia o mediante acuerdo de las partes aprobado por el tribunal. Puede aumentar o disminuir el monto si cambian las circunstancias que se consideraron al momento de fijarlo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Alimentos provisorios",
+    "definicion": "aquellos que se entregan temporalmente mientras se resuelve un juicio por alimentos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Asignación familiar",
+    "definicion": "beneficios en dinero, cosas o servicios que se otorgan por el Estado a la familia en consideración de sus cargas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Bien familiar",
+    "definicion": "cosas de propiedad de uno o ambos cónyuges (como la casa o habitación de residencia principal de la familia y los muebles). No puede disponerse de ellas libremente pues se consideran básicos para la subsistencia de la familia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Carga familiar",
+    "definicion": "las personas que dependen de un jefe o jefa de familia y que no reciben remuneración de ningún tipo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cese de convivencia",
+    "definicion": "hecho que da certeza de la fecha del término de la vida en común y que sirve de antecedente para demandar de divorcio o de separación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Consejero(a) técnico",
+    "definicion": "profesional (psicólogo o asistente social) que asesora al juez de familia en conocimientos del área de su especialidad. Su labor podría contribuir al acuerdo entre las partes.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Conviviente civil",
+    "definicion": "las personas que celebren el Acuerdo de Unión Civil (AUC) pasan a ser “convivientes civiles\". Se aplica tanto a parejas del mismo sexo como a aquellas de distinto sexo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cuidado personal",
+    "definicion": "derecho y deber que tienen el padre y la madre de intervenir y participar en la crianza, educación y cuidado de su hijo o hija menor de edad, teniendo como consideración primordial el interés superior del niño. Lo pueden ejercer ambos o solo uno de ellos. En caso de inhabilidad del padre y de la madre, lo puede ejercer un tercero (otro familiar).",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Curador (a) ad-litem",
+    "definicion": "abogado nombrado por el juez para que represente al niño, niña o adolescente que no tiene representante legal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Divorcio",
+    "definicion": "término o fin del vínculo matrimonial decretado por sentencia judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Filiación",
+    "definicion": "vínculo jurídico que une a los hijos con su padre o madre y que consiste en la relación de parentesco establecida por la ley.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Impugnación de filiación",
+    "definicion": "procedimiento que busca determinar que una persona no es hija o hijo de otra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Impugnación de maternidad",
+    "definicion": "procedimiento que busca probar que una persona no es la madre de otra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Impugnación de paternidad",
+    "definicion": "procedimiento que busca probar que una persona no es el padre de otra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ingreso mínimo mensual remuneracional",
+    "definicion": "sueldo, salario o ingreso mínimo establecido por la ley. Sirve de base para calcular pensiones de alimento.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mediación",
+    "definicion": "sistema de resolución de conflictos en el que un tercero no relacionado con las partes que se llama “mediador”, los ayuda a buscar una solución al conflicto y llegar a un acuerdo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mediación frustrada",
+    "definicion": "aquella en la que no fue posible llegar a un acuerdo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mediador",
+    "definicion": "persona que no se relaciona con las partes en un conflicto y que las ayuda a buscar una solución mediante acuerdos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Medida de protección",
+    "definicion": "orden judicial que establece en forma obligatoria el cumplimiento de determinadas acciones en beneficio, cuidado y protección de un niño, niña o adolescente que ha sido vulnerado en sus derechos por sus padres, familiares o terceras personas. Son medidas provisorias que pueden modificar-se si cambian las circunstancias.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Pensión de alimentos",
+    "definicion": "monto en dinero que se otorga a ciertas personas para que puedan vivir de acuer-do a su posición social y necesidades conforme a las facultades económicas de quien debe dar dichos alimentos. Este monto debe cubrir, al menos, su alimentación, vivienda, vestimenta, salud, educación y movilización. Se paga mensualmente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Posesión notoria",
+    "definicion": "medio de prueba o forma de demostrar un hecho o situación en materia de estado civil. Por ejemplo, para acreditar que una persona es su hijo, demostrará que lo presentó como tal a sus familiares y amigos, y que estos lo reconozcan de la misma forma.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prueba de ADN",
+    "definicion": "medio de prueba de carácter biológico que consiste en la comparación de muestras de ADN de los intervinientes (padres e hijos), a fin de determinar la paternidad o maternidad o ausencia de estas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Reclamación de maternidad",
+    "definicion": "solicitud que se hace a un tribunal para que declare que una persona es madre de otra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Reclamación de paternidad",
+    "definicion": "solicitud que se hace a un tribunal para que declare que una persona es padre de otra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Relación directa y regular",
+    "definicion": "derecho y deber de un padre o madre, que no tiene el cuidado personal de su hijo, a mantener un contacto cercano, estable y periódico acorde al adecuado desarrollo emocional del niño. También es un derecho del niño o niña para poder relacionarse directa y regularmente con sus abuelos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Retención judicial",
+    "definicion": "medida solicitada al juzgado de familia, que consiste en ordenar al empleador de la persona que debe alimentos, que descuente de su sueldo o remuneración, las sumas de dinero correspondiente a la pensión de alimentos decretada.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Susceptibilidad de adopción",
+    "definicion": "procedimiento que busca determinar que un niño o niña se encuentra en condiciones de ser adoptado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Violencia intrafamiliar",
+    "definicion": "todo maltrato que afecte la vida o la integridad física o psíquica de cualquiera de los miembros del grupo familiar.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Accidente del trabajo",
+    "definicion": "toda lesión que sufre una persona a causa o con ocasión de su trabajo y que le produce lesiones de incapacidad o muerte.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acoso laboral",
+    "definicion": "toda agresión u hostigamiento reiterados ejercidos por el empleador o por uno o más trabajadores en contra de otro u otros trabajadores por cualquier medio, y que tenga como resultado para él o los afectados su menoscabo, maltrato o humillación, o bien que amenace o perjudique su situación laboral o sus oportunidades en el empleo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Contrato individual de trabajo",
+    "definicion": "convención por la cual el empleador y el trabajador se obligan recíprocamente, este a prestar servicios personales bajo dependencia y subordinación del empleador, y aquel a pagar por estos servicios una remuneración determinada.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Dependencia",
+    "definicion": "vínculo que existe entre el trabajador y el empleador, por el cual el trabajador recibe una remuneración de parte del empleador por la prestación de servicios pactados en el contrato de trabajo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Descanso dentro de la jornada",
+    "definicion": "tiempo de descanso diario destinado a la alimentación (almuerzo) al que tiene derecho todo trabajador durante la jornada de trabajo. No se considera parte de la duración de la jornada.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Despido indirecto o autodespido",
+    "definicion": "derecho que se le concede al trabajador para que este pueda, solo en los casos señalados en la ley, solicitar al tribunal que declare terminado el contrato laboral. Existirá derecho a indemnización cuando el empleador incurra en alguna conducta grave en contra del trabajador.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Despido",
+    "definicion": "acto por el cual un empleador pone término de forma unilateral a un contrato laboral por alguna causa establecida en la ley laboral",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Empleador",
+    "definicion": "persona natural o jurídica que utiliza los servicios intelectuales o materiales de una o más personas en virtud de un contrato de trabajo",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Empresa",
+    "definicion": "toda organización de medios personales, materiales e inmateriales dotada de una individuali-dad legal determinada y ordenada bajo la dirección de un empleador para el logro de fines económicos, sociales, culturales o benéficos",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Feriado anual",
+    "definicion": "derecho a vacaciones que tiene todo trabajador que ha cumplido más de un año de servi-cio, con derecho al pago de la remuneración",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Feriado proporcional",
+    "definicion": "derecho del trabajador a percibir una suma de dinero equivalente a la remunera-ción íntegra cuando el contrato de trabajo termine antes de completar el año de servicio respectivo que da derecho a vacaciones anuales. Se calcula en forma proporcional entre el día en que fue contratado o la fecha en que completó el último año de trabajo y el día en que terminó de prestar servicios. Este derecho no procede para los trabajadores que son contratados por 30 días y prorrogados por un mismo período",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Finiquito",
+    "definicion": "documento escrito por medio del cual el empleador y el trabajador, con ocasión del término del contrato de trabajo, dejan constancia tanto de las obligaciones recíprocas que se encuentran cumplidas como aquellas que se encuentran pendientes. En este último caso se conserva el derecho a reclamarlas con posterioridad",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Fuero laboral",
+    "definicion": "forma de protección que la ley establece para trabajadores que se encuentren en un es-pecial estado de vulnerabilidad. Consiste en que ellos no podrán ser despedidos sin previa autorización judicial por alguna de las causales que dispone la ley",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Huelga",
+    "definicion": "derecho que tienen los trabajadores involucrados en un proceso de negociación colectiva para suspender las actividades a las que están obligados en conformidad a sus contratos individuales de trabajo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Indemnización por años de servicio",
+    "definicion": "es la suma en dinero que debe pagar el empleador a un trabajador por la cantidad de años que este ha trabajado para él en caso de término de la relación laboral por despido o autodespido.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Instrumento colectivo",
+    "definicion": "convención celebrada entre empleadores y trabajadores con el objeto de establecer condiciones comunes de trabajo, remuneraciones u otros beneficios en especie o en dinero por un tiempo determinado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acciones para abstenerse de sindicato",
+    "definicion": "Lo son también las acciones para que un trabajador se abstenga de pertenecer a un sindicato o lo obligue a promover la formación de uno.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Necesidades de la empresa",
+    "definicion": "hechos objetivos que hacen inevitable la separación de uno o más trabajadores de la empresa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Negociación colectiva",
+    "definicion": "procedimiento regulado por ley a través del cual un empleador se relaciona con uno o más sindicatos de su empresa o con trabajadores que se unen para tal efecto. Tiene por objetivo establecer condiciones comunes de trabajo y de remuneraciones por un tiempo determinado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prácticas antisindicales",
+    "definicion": "acciones que atentan contra la libertad sindical, ya sea del empleador, del trabajador, de las organizaciones sindicales, y de todo aquel que ejerza fuerza física o moral en los trabajadores con el fin de obtener su filiación o desafiliación sindical.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento de aplicación general",
+    "definicion": "aquel que tiene por objeto resolver las contiendas cuya cuantía sea superior a diez ingresos mínimos mensuales. Se desarrolla en dos audiencias que se efectúan en días distintos: una preliminar o inicial llamada “audiencia preparatoria” y una final llamada \"audiencia de juicio\".",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento de tutela de derechos fundamentales",
+    "definicion": "aquel que se desarrolla como un juicio de aplicación general y que tiene por finalidad resolver la controversia que se genera producto de una vulneración de derechos fundamentales del trabajador por parte del empleador u otro trabajador mientras se ejecuta el contrato de trabajo. Por ejemplo, el derecho a la vida, a la privacidad, a la no discriminación arbitraria.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento monitorio",
+    "definicion": "aquel que tiene por objeto resolver las contiendas cuya cuantía sea igual o inferior a diez ingresos mínimos mensuales, y de las contiendas referentes al fuero maternal y parental. Se desarrolla en una única audiencia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Reglamento interno, de orden, higiene y seguridad",
+    "definicion": "documento escrito en el que las empresas que cuentan con diez o más trabajadores de forma permanente, fijan las obligaciones y prohibiciones a las que deben sujetarse los trabajadores en relación con sus labores, permanencia y vida en las dependencias de la respetiva empresa o establecimiento, y que establecen normas sobre orden, higiene y seguridad en ella.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Remuneración",
+    "definicion": "retribución en dinero y las adicionales en especie avaluables en dinero que debe percibir el trabajador por parte del empleador por el trabajo realizado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Renuncia",
+    "definicion": "acto unilateral por el cual el trabajador decide dar término al contrato de trabajo sin expresión de causa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sindicato",
+    "definicion": "organización libremente constituida por trabajadores del sector privado y/o de las empresas del Estado autorizadas por la ley cuyo objetivo es, entre otros, asumir la representación y defensa de sus asociados, así como promover los intereses económicos, sociales y culturales de los mismos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sobresueldo",
+    "definicion": "remuneración de las horas extraordinarias de trabajo, es decir, aquellas que exceden la jornada ordinaria de 45 horas semanales, o de la jornada inferior que se haya pactado (Por ejemplo, 40 horas semanales).",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Subcontratación",
+    "definicion": "forma de contratación en virtud de la cual un trabajador desarrolla labores para un empleador, denominado “contratista” o “subcontratista” quien, en razón de un acuerdo, ejecuta obras o servicios con trabajadores bajo su dependencia, para otra persona o empresa denominada \"empresa principal\".",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Subordinación",
+    "definicion": "dice relación con la especial vinculación existente entre el trabajador y el empleador, en virtud de la cual este está facultado para determinar el tiempo, lugar y forma en que el trabajador debe prestar los servicios pactados en el contrato de trabajo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Trabajador dependiente",
+    "definicion": "persona natural que presta servicios personales, intelectuales o materiales, bajo dependencia o subordinación y en virtud de un contrato de trabajo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Trabajador independiente",
+    "definicion": "aquel que en el ejercicio de su actividad no depende de empleador alguno ni tiene trabajadores bajo su dependencia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acuerdo reparatorio",
+    "definicion": "trato al que llegan el imputado y la víctima. Debe ser aprobado por el juez de garantía y procede en los siguientes casos: delitos que afectan el patrimonio, lesiones menos graves o delitos culposos. Si el imputado cumple el acuerdo, la causa termina definitivamente y se archiva.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acusación",
+    "definicion": "escrito en el cual el fiscal describe los hechos del delito, la participación del acusado, señala las circunstancias atenuantes y/o agravantes de responsabilidad penal, solicita una pena y ofrece la prueba que presentará en el juicio oral.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acusado",
+    "definicion": "persona contra quien el fiscal presenta la acusación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Agrupación de investigaciones",
+    "definicion": "facultad que tiene el fiscal para llevar en forma conjunta la investigación de dos o más delitos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Allanamiento",
+    "definicion": "ingreso que realiza la policía a un domicilio particular o público por orden de un juez para detener al autor de un delito y/o incautar especies.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Apercibimiento de arresto",
+    "definicion": "advertencia hecha a una persona por el juez de garantía o los jueces del tribunal de juicio oral en lo penal. Si esta no cumple con lo ordenado, será privada temporalmente de su libertad. Por ejemplo, un testigo que no asiste a un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Archivo provisional",
+    "definicion": "facultad que tiene el fiscal para no continuar una investigación, cuando los antecedentes que posee no son suficientes para aclarar los hechos. Solo puede ejercerla en casos en que no haya intervenido un juez de garantía.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Arraigo",
+    "definicion": "medida cautelar que prohíbe a una persona salir del país o territorio que fije el tribunal. Es ordenada por el juez de garantía o los jueces del tribunal de juicio oral en lo penal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Audiencia de control de detención",
+    "definicion": "audiencia en la que por primera vez una persona detenida por orden judicial o por haber sido sorprendida en un delito flagrante se presenta ante el juez de garantía. En ella el juez verifica si se le han informado sus derechos y si la detención se realizó de acuerdo a la ley.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Audiencia de juicio oral",
+    "definicion": "audiencia oral y pública que se realiza en los juzgados de garantía y en los tribunales de juicio oral en lo penal. En ella deben estar presentes el acusado, el fiscal, la defensa y el querellante, quienes presentan las pruebas. Al finalizar la audiencia el o los jueces deciden si el acusado es absuelto o condenado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Audiencia de preparación de juicio oral",
+    "definicion": "audiencia oral y pública que se realiza en el juzgado de garantía en la cual un juez decide las pruebas que el fiscal, la defensa y el querellante podrán presentar en el juicio que se realizará en un tribunal de juicio oral en lo penal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Auto de apertura de juicio oral",
+    "definicion": "resolución que dicta el juez de garantía en la audiencia de preparación de juicio oral. En ella se establecen los hechos que se debatirán en el juicio, el tribunal de juicio oral en lo penal en el que se realizará y las pruebas que presentarán el fiscal, la defensa y el querellante.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cautela de garantía",
+    "definicion": "posibilidad que tiene el imputado o acusado, la víctima u otra persona para pedir al juez de garantía que se respeten sus derechos fundamentales. Por ejemplo: un imputado preso que necesita tratamiento médico.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cierre de investigación",
+    "definicion": "decisión del fiscal que pone término a la etapa de investigación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Citación",
+    "definicion": "resolución que dicta un juez de garantía o jueces de un tribunal de juicio oral en lo penal en la que se ordena al imputado, la víctima, testigo u otra persona asistir un día y hora al tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Comiso",
+    "definicion": "pena que consiste en quitarle al condenado el dinero u objetos que obtuvo del delito y también las cosas que usó para cometerlo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Condenado",
+    "definicion": "persona contra la cual se ha dictado una sentencia condenatoria, es decir, se comprobó que es el autor, cómplice o encubridor de un delito.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Control de identidad",
+    "definicion": "facultad que tiene la policía para solicitar la identificación de cualquier persona cuando existan antecedentes que lo vinculen con un delito o falta.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Decisión de no perseverar",
+    "definicion": "facultad que tiene el fiscal para no continuar con una investigación porque no hay antecedentes serios para presentar una acusación. Se informa en una audiencia ante el juez de garantía y como consecuencia quedan sin efecto la formalización de investigación y las medidas cautelares.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Defensor",
+    "definicion": "abogado que asume la defensa y representación del imputado en un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Denuncia",
+    "definicion": "acto por cual una persona comunica a las autoridades la existencia de un hecho que podría ser un delito.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Denunciado",
+    "definicion": "persona contra la cual se presenta una denuncia porque se le atribuye haber cometido un delito.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Desacato",
+    "definicion": "delito en el que incurre una persona por incumplir una resolución judicial de la que estaba no- tificado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Detención",
+    "definicion": "medida cautelar en la cual una persona es privada de libertad por un tiempo breve para ser presentada ante un juez.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Falta",
+    "definicion": "conducta en la que se infringe la ley y tiene asignada una pena de hasta 60 días de prisión o multa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Flagrancia",
+    "definicion": "situación en la que una persona es sorprendida cometiendo un delito o acaba de cometerlo, pudiendo ser detenida inmediatamente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Formalización de la investigación",
+    "definicion": "comunicación que realiza el fiscal al imputado en una audiencia ante el juez de garantía en la que se le informa que existe una investigación en su contra por un delito deter- minado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Hurto",
+    "definicion": "tomar en forma ilegítima o sustraer una cosa ajena sin fuerza ni violencia o intimidación en las personas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Imputado",
+    "definicion": "persona a quien se le atribuye participación en un delito.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Incautación",
+    "definicion": "retención que se efectúa durante el proceso respecto de especies que se encuentran relacio-nadas con la comisión de un delito. Por ejemplo: vehículos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Intervinientes",
+    "definicion": "personas o instituciones que participan en el proceso penal, como son el fiscal, imputado, defensor, víctima y querellante.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Irreprochable conducta anterior",
+    "definicion": "circunstancia que permite disminuir la pena, es decir, si el sentenciado no tiene condenas previas puede optar a una pena menor.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Medidas cautelares personales",
+    "definicion": "medidas que dicta el juez de garantía o los jueces del tribunal de juicio oral en lo penal para asegurar que el imputado asista a las audiencias y/o proteger a la víctima. Por ejem-plo: arraigo, prohibición de acercarse a la víctima u otro.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Medidas cautelares reales",
+    "definicion": "medidas que dicta el juez de garantía para asegurar que los afectados por el delito puedan lograr alguna reparación económica. Por ejemplo: prohibición de vender inmuebles o vehí-culos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Ministerio Público",
+    "definicion": "órgano estatal que no depende de ningún Poder del Estado. Los abogados que trabajan en el Ministerio Público se llaman \"fiscales”. Entre sus labores se encuentran formalizar la investiga-ción y brindar protección a las víctimas y testigos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Multa",
+    "definicion": "pena que implica el pago de una suma de dinero.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Pena",
+    "definicion": "sanción que imponen a un imputado el juez de garantía o los jueces del tribunal de juicio oral en lo penal en una sentencia condenatoria.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prescripción",
+    "definicion": "término de la responsabilidad penal por haber transcurrido cierto tiempo desde que se co- metió el delito o desde que se dictó la sentencia condenatoria.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Presunción de inocencia",
+    "definicion": "principio según el cual ninguna persona puede ser tratada o considerada culpa- ble antes de que se dicte una sentencia condenatoria en su contra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Principio de oportunidad",
+    "definicion": "facultad que tiene el fiscal para no iniciar una investigación o abandonarla cuan- do se trate de un hecho que no comprometa gravemente el interés público.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prisión preventiva",
+    "definicion": "privación de libertad que ordena un juez durante la tramitación del proceso a petición de un fiscal cuando existan antecedentes de un delito y de la participación del imputado. Además, la liber- tad del imputado debe constituir un peligro para la seguridad de la víctima o de la sociedad. Por ejemplo: puede fugarse o destruir medios de prueba.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento abreviado",
+    "definicion": "procedimiento especial que se realiza ante el juez de garantía en el cual hay acuerdo entre el fiscal y el imputado, quien acepta los hechos por los que se le acusa y los antecedentes que hay en la carpeta de investigación. La sentencia en la cual se determina la pena la dicta el juez de garantía.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento monitorio",
+    "definicion": "procedimiento especial que se aplica a las faltas cuando el fiscal solicita al juez de garantía que se imponga una pena de multa.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento ordinario",
+    "definicion": "procedimiento que se efectúa cuando se acusa al imputado por un crimen o simple delito. Comienza con la formalización de la investigación y termina con el juicio oral ante el tribunal de juicio oral en lo penal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Procedimiento simplificado",
+    "definicion": "procedimiento especial que se realiza ante el juez de garantía en los casos en que el fiscal pide una pena privativa de libertad no superior a 540 días.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Querellante",
+    "definicion": "calidad que adquiere la víctima o su representante al presentar formalmente una querella contra él o los imputados. La querella es el escrito que se presenta ante el juez de garantía en el cual se describe el hecho y se piden diligencias de investigación.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso de Amparo",
+    "definicion": "acción que otorga la Constitución Política de la República a toda persona que se considere que ha sido ilegalmente privada de libertad para que la Corte de Apelaciones revise el caso y determine si su privación de libertad es legal o no.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Recurso de Nulidad",
+    "definicion": "acción judicial que tiene por objetivo anular el juicio oral y/o la sentencia cuando en la tramitación del proceso se afectaron los derechos fundamentales o en la sentencia se aplicó erróneamente el derecho. Lo puede resolver la Corte Suprema o la Corte de Apelaciones.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Reincidencia",
+    "definicion": "circunstancia que aumenta la pena de un condenado. Si se comprueba que el sentenciado ha sido condenado anteriormente por otro delito puede aumentar la pena que se le aplicará.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Remisión condicional de la pena",
+    "definicion": "forma de cumplir en libertad una condena determinada por el juez de garantía o jueces del tribunal de juicio oral en lo penal. Pueden otorgarla cuando el sentenciado no tiene condenas y la pena que debe cumplir no sea mayor a 3 años. Durante el período de cumplimiento el condenado debe asistir a actividades que determine Gendarmería de Chile.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Responsabilidad penal de los adolescentes",
+    "definicion": "conjunto de normas que regulan la forma en que serán juzgados los adolescentes que cometen delitos y que tengan entre 14 y 18 años.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Salidas alternativas",
+    "definicion": "formas de poner término al procedimiento penal antes del juicio oral. Existen dos tipos: la suspensión condicional del procedimiento y el acuerdo reparatorio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sentencia absolutoria",
+    "definicion": "forma de poner término al proceso por la cual el juez de garantía o los jueces del tribunal de juicio oral en lo penal deciden que el hecho investigado no es delito o que el acusado no participó en él.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sentencia condenatoria",
+    "definicion": "forma de poner término al proceso por la cual el juez de garantía o los jueces del tribunal de juicio oral en lo penal deciden que el acusado es culpable de un delito y le imponen una pena.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sobreseimiento definitivo",
+    "definicion": "término definitivo del proceso penal por determinadas causales legales. Por ejemplo: muerte del imputado, prescripción de la pena u otro.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Sobreseimiento temporal",
+    "definicion": "suspensión del procedimiento penal por ciertas causales legales. Por ejemplo: si el imputado está rebelde, es decir, hay una orden de detención en su contra y la policía no lo encuentra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Suspensión condicional del procedimiento",
+    "definicion": "forma de poner término al procedimiento penal antes del juicio oral. Consiste en un acuerdo al que llegan el imputado y el fiscal para suspender el procedimiento por un período, el que no podrá ser menor a un año ni superior a tres. Durante este tiempo el imputado deberá cumplir ciertas condiciones que de ser cumplidas, se terminará la causa y se dictará sobreseimiento definitivo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Testimonio",
+    "definicion": "declaración de una persona como testigo en juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Víctima",
+    "definicion": "persona afectada por el delito o quien la representa legalmente. Si la víctima fallece producto del delito se consideran víctimas a sus parientes. Por ejemplo: cónyuge, padres o hermanos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Violencia intrafamiliar",
+    "definicion": "maltrato físico o psicológico que comete un miembro de la familia contra otro, pudiendo ser la víctima el cónyuge, ex cónyuge, conviviente, ex conviviente, niños, adultos mayores o personas con discapacidad.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Absolución de posiciones",
+    "definicion": "confesión provocada (solicitada por la contraparte o por el tribunal) que se realiza mediante interrogatorio y bajo juramento de decir la verdad.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Acreedor",
+    "definicion": "persona natural o jurídica que legítimamente está autorizada para exigir el pago o cumplimiento de una obligación contraída con anterioridad.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Albacea",
+    "definicion": "persona que el testador nombra para que cumpla lo que dispone el testamento.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Anticresis",
+    "definicion": "contrato por el cual se entrega al acreedor un bien inmueble para que se pague de la deuda con sus frutos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Arras",
+    "definicion": "cantidad de dinero o bienes muebles que una persona entrega a otra como garantía de que se celebrará o cumplirá el contrato, o como parte del precio o en señal de quedar acordadas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Arrendamiento",
+    "definicion": "contrato en que una parte entrega a otra el uso y goce de una cosa y la otra paga por este uso y goce un precio determinado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Aval",
+    "definicion": "contrato en que una persona asume un compromiso de pago de una obligación a favor del acreedor no de un tercero, en el caso de que este último no cumpla o no pueda cumplir con el pago de ella.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Avenimiento",
+    "definicion": "acuerdo que logran directamente las partes, sin intervención del juez, que pone término aun conflicto sometido a juicio, y produce los mismos efectos que una sentencia dictada por un tribunal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Beneficio de inventario",
+    "definicion": "consiste en que los herederos solo serán responsables de las deudas del difunto hasta el valor total de los bienes heredados.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Caución",
+    "definicion": "garantía que se contrae para asegurar el cumplimiento de una obligación, ya sea propia o ajena.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Causante",
+    "definicion": "persona que fallece y por el que otras personas le suceden y pasan a ser herederos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Codeudor solidario",
+    "definicion": "persona que comparte una deuda con otra persona en igualdad de condiciones, por lo que el acreedor podrá cobrar directamente al deudor principal o a quien solidarizó o se obligó a pagar la deuda con este.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Comodato",
+    "definicion": "contrato en que una de las partes entrega a la otra gratuitamente una especie, mueble o raíz, para que haga uso de ella, y con cargo de restituir la misma especie después de terminado el uso.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Compensación",
+    "definicion": "forma de extinguir las deudas en aquellos casos en que dos personas son deudoras una de la otra.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Compraventa",
+    "definicion": "contrato en que una de las partes se obliga a dar o vender una cosa, y la otra a pagar un precio en dinero por ella.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Conciliación",
+    "definicion": "trámite obligatorio y esencial dentro de un juicio que consiste en el llamado que hace el juez a las partes para dar solución al conflicto. Permite poner término al juicio como si se hubiese dictado una sentencia definitiva.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Copropiedad inmobiliaria",
+    "definicion": "dominio exclusivo que tiene una persona sobre ciertos bienes, y a la vez, de una parte o cuota de otros, en conjunto con otros codueños o copropietarios.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cuaderno de apremio",
+    "definicion": "expediente donde constan las diligencias relativas al embargo, retiro y remate de bienes en un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cuaderno de cumplimiento",
+    "definicion": "expediente en que constan las acciones dirigidas a que se cumpla con la sentencia dictada.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cuaderno de tercería",
+    "definicion": "expediente donde se hacen valer derechos de terceros ajenos al juicio principal.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cuaderno principal",
+    "definicion": "expediente donde consta la tramitación de un juicio.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Cuarta de mejora",
+    "definicion": "aquella parte de los bienes en que el difunto (testador) puede dejar a favor de sus hijos y cónyuge o conviviente civil sobreviviente.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demanda ejecutiva",
+    "definicion": "aquella que se presenta a un juez acompañando un documento llamado “título ejecutivo”, que da cuenta de una deuda y que permite exigir su pago, incluso a través del remate de bienes del deudor.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Demanda reconvencional",
+    "definicion": "aquella planteada por el demandado en contra del demandante en su escrito de contestación de la demanda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Depositario",
+    "definicion": "persona que tiene a su cargo de forma provisoria los bienes de otra persona.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Dolo",
+    "definicion": "consiste en emplear medios engañosos, ilícitos e indebidos, destinados a perjudicar a otra persona.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Embargo",
+    "definicion": "individualización de los bienes del deudor que realiza un receptor judicial en un documento, a fin de obtener el pago forzoso de una deuda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Excepciones",
+    "definicion": "forma que tienen las personas demandadas en un juicio ejecutivo de defenderse ante el cobro de una deuda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Frutos civiles",
+    "definicion": "sumas de dinero que recibe el propietario de un bien, por ceder a otro su uso o goce.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Heredero",
+    "definicion": "persona que por ley o por testamento representa al difunto en todos sus bienes, derechos y obligaciones.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Herencia",
+    "definicion": "conjunto de bienes, derechos y obligaciones del difunto que pasan a otras personas que se denominan herederos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Herencia vacante",
+    "definicion": "conjunto de bienes, derechos y obligaciones del difunto que pasan al fisco por no contar con herederos que la reclamen.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Herencia yacente",
+    "definicion": "es la declarada por resolución judicial, debido a que el conjunto de bienes, derechos y obligaciones del difunto no han sido reclamados por ninguna persona con carácter de heredero.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Hipoteca",
+    "definicion": "garantía constituida generalmente sobre bienes inmuebles que permanecen en poder del deudor y que garantiza el pago de una deuda.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Incautación",
+    "definicion": "retención de bienes de manera forzosa por una decisión judicial.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Instrumento público",
+    "definicion": "documento autorizado por autoridades y funcionarios de la Administración del Estado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Lanzamiento",
+    "definicion": "desalojo de un inmueble, previa resolución judicial, por el no pago de la renta o la finaliza-ción del contrato de arriendo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Legatario",
+    "definicion": "persona a la cual el testador le ha asignado una cosa determinada y, a diferencia de los here-deros, no representan al difunto.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Lucro cesante",
+    "definicion": "ganancia que se deja de recibir como consecuencia del acto u omisión de un tercero y que da derecho a una indemnización.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mandamiento de ejecución y embargo",
+    "definicion": "resolución judicial en la cual se pide el pago al deudor y en el evento que no se realice se ordena el embargo de los bienes.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Medida precautoria",
+    "definicion": "resolución judicial con la cual se pretende asegurar el resultado de una acción.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Mora",
+    "definicion": "retardo en el pago de una deuda, unido a la solicitud efectuada por el acreedor al deudor para que este cumpla.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Posesión",
+    "definicion": "tenencia de una cosa determinada con intención de conservarla.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Posesión efectiva",
+    "definicion": "trámite legal que deben realizar los herederos de una persona que ha fallecido y que les permite disponer de los bienes comprendidos en la herencia.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Precario",
+    "definicion": "tener o disfrutar de una cosa material ajena sin ser propietario y solo por ignorancia o tolerancia del dueño.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prenda",
+    "definicion": "contrato por el cual se entrega una cosa mueble (autos, televisores, electrodomésticos, etc.) a un acreedor para asegurar el pago de la deuda, dándole la facultad de venderla y de pagarse con lo que obtenga si el deudor no paga.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prescripción adquisitiva",
+    "definicion": "modo de adquirir las cosas por haberlas poseído durante cierto lapso de tiempo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Prescripción extintiva",
+    "definicion": "modo de extinguir (terminar) las acciones y derechos ajenos al transcurrir cierto lapso de tiempo.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Propiedad fiduciaria",
+    "definicion": "aquella que obligatoriamente debe pasar a otra persona al cumplirse cierta condición.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Quiebra",
+    "definicion": "situación jurídica en que se encuentra una persona, empresa o institución, que no posee los recursos económicos para hacer frente a sus deudas, por ser estas últimas superiores a sus ingresos o capital.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Receptor judicial",
+    "definicion": "ministro de fe encargado de hacer saber a las partes, fuera de las oficinas de los secretarios, los decretos y resoluciones de los Tribunales de Justicia y de evacuar todas aquellas diligencias que los mismos tribunales les encarguen.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Reivindicación",
+    "definicion": "acción que tiene el dueño de una cosa determinada que no está en su poder para recuperarla.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Remate",
+    "definicion": "forma de adquirir bienes (muebles e inmuebles) que han sido sujetos a un procedimiento legal, a raíz del incumplimiento de pago por parte de un deudor. En esta instancia, un juez civil ordena poner a la venta y subasta pública los mencionados bienes.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Retiro",
+    "definicion": "acto por el cual un receptor judicial, eventualmente acompañado de un funcionario de carabineros, toma bienes de un deudor que fueron objeto de embargo judicial para entregarlos a un martillero público, venderlos públicamente y con ello pagar lo adeudado.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Secuestro",
+    "definicion": "entrega a un tercero de una cosa que dos o más personas se disputan mientras se resuelve definitivamente acerca de sus derechos.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Servidumbre",
+    "definicion": "gravamen que se impone a un predio en beneficio de otro predio de distinto dueño. Por ejemplo: personas que viven en propiedad que limita con camino público deben permitir, a quienes viven en predios interiores, transitar por su propiedad o camino privado para acceder a vía pública.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Subasta",
+    "definicion": "procedimiento de venta forzado de uno o más bienes de un deudor que han sido embargados para el pago a sus acreedores.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Tercería",
+    "definicion": "intervención en un juicio de una persona que no es parte, por verse perjudicado con lo que sucede en él o por tener intenciones distintas.",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Título ejecutivo",
+    "definicion": "documento al que la ley le atribuye la fuerza necesaria para exigir el cumplimiento obligado de una deuda (pagaré).",
+    "referencia_legal": null
+  },
+  {
+    "termino": "Usufructo",
+    "definicion": "derecho de utilizar, gozar o disfrutar de una cosa ajena de la que no se es dueño.",
+    "referencia_legal": null
+  }
+]

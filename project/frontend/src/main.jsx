@@ -5,9 +5,10 @@ import './index.css'
 import App from './App.jsx'
 import Navbar from './components/navbar'
 import Home from './pages/home'
-import Login from './pages/login'
+import Login from './pages/Login'
 import Register from './pages/Register'
 import Generador from './pages/Generador'
+import BuscadorDiccionario from './components/BuscadorDiccionario.jsx'
 
 // Definición de las rutas
 const router = createBrowserRouter([
@@ -35,6 +36,15 @@ const router = createBrowserRouter([
       {
         path: 'generador',
         element: <Generador />,
+      }, 
+      {
+        path: 'guia-ojv',
+        element: <div>Página de Guía OJV (Pendiente)</div>, // Placeholder para la guía
+      },
+      {
+        path: 'diccionario', // ¡Esta es la ruta que faltaba!
+        element: <BuscadorDiccionario />,
+      
       }
     ],
   },
