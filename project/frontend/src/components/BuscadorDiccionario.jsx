@@ -42,8 +42,12 @@ const BuscadorDiccionario = () => {
     }, [debouncedTermino, letraSeleccionada]);
 
     const handleLetraClick = (letra) => {
-        setTerminoBusqueda('');
-        setLetraSeleccionada(letra);
+        if (letra === letraSeleccionada) {
+            setLetraSeleccionada('');
+        } else {
+            setTerminoBusqueda('');
+            setLetraSeleccionada(letra);
+        }
     };
 
     return (
