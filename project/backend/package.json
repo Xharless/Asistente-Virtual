@@ -18,7 +18,8 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "pdf-parser": "^1.0.5",
+    "multer": "^2.0.2",
+    "pdf-parse": "^2.4.5",
     "pg": "^8.16.3",
     "puppeteer": "^24.27.0"
   },
