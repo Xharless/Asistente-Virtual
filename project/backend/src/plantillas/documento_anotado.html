@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 12pt;
+            line-height: 1.5; 
+            color: #000;
+            padding: 0; 
+        }
+        
+        h1 {
+            text-align: center;
+            font-family: 'Arial', sans-serif; 
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .contenido-original {
+            text-align: justify; 
+            margin-bottom: 50px;
+            white-space: pre-wrap; 
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        sup {
+            color: #e74c3c;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .seccion-glosario {
+            margin-top: 50px;
+            border-top: 1px solid #000;
+            padding-top: 20px;
+            page-break-before: always; 
+            font-family: 'Arial', sans-serif;
+            font-size: 11pt;
+        }
+        
+        .seccion-glosario h2 {
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 14pt;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        strong {
+            color: #000;
+            font-weight: bold;
+        }
+    </style>
+    <title>Documento Legal Anotado</title>
+</head>
+<body>
+
+    <h1>Documento Legal Analizado</h1>
+
+    <div class="contenido-original">
+        {{contenido_pdf}}
+    </div>
+
+    <div class="seccion-glosario">
+        <h2>Glosario de Términos Jurídicos</h2>
+        <p><em>A continuación se detallan los términos legales identificados en el documento:</em></p>
+        <ul>
+            {{glosario}}
+        </ul>
+    </div>
+
+</body>
+</html>

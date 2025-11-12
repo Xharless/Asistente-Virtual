@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Generador from './pages/Generador'
 import BuscadorDiccionario from './components/BuscadorDiccionario.jsx'
+import AnalizadorPDF from './pages/AnalizadorPDF.jsx'
 
 // Definición de las rutas
 const router = createBrowserRouter([
@@ -40,6 +41,9 @@ const router = createBrowserRouter([
       {
         path: 'guia-ojv',
         element: <div>Página de Guía OJV (Pendiente)</div>, // Placeholder para la guía
+      },{
+        path: 'analizador',
+        element: <AnalizadorPDF />
       },
       {
         path: 'diccionario', // ¡Esta es la ruta que faltaba!

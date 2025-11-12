@@ -70,6 +70,9 @@ function Navbar() {
                                 <Link to="/generador" className="nav-link">
                                     Generador Docs
                                 </Link>
+                                <Link to="/analizador" className="nav-link">
+                                    Analizador PDF
+                                </Link>
                                 <Link to="/diccionario" className="nav-link">
                                     Diccionario
                                 </Link>
