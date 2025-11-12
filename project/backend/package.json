@@ -19,7 +19,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
-    "pdf-parse": "^2.4.5",
+    "pdfreader": "^3.0.8",
     "pg": "^8.16.3",
     "puppeteer": "^24.27.0"
   },
