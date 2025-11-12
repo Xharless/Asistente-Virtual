@@ -5,11 +5,9 @@ import { fileURLToPath } from 'url';
 import { PdfReader } from 'pdfreader';
 import pool from '../database/index.js';
 
-// [CORRECCIÓN 1]: Eliminado el console.log roto que hacía referencia a 'pdf'.
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Función auxiliar para seguridad HTML
 const escaparHTML = (str) => {
     if (!str) return '';
     return str.replace(/[&<>"']/g, (m) => ({
@@ -17,7 +15,6 @@ const escaparHTML = (str) => {
     })[m]);
 };
 
-// Función auxiliar para formatear fechas
 const formatearFecha = (fecha) => {
     if (!fecha) return '';
     const d = new Date(typeof fecha === 'string' ? `${fecha}T00:00:00` : fecha);
@@ -25,6 +22,30 @@ const formatearFecha = (fecha) => {
     const mes = String(d.getMonth() + 1).padStart(2, '0'); 
     return `${dia}-${mes}-${d.getFullYear()}`;
 };
+
+function parsePdfBuffer(dataBuffer) {
+    return new Promise((resolve, reject) => {
+        let fullText = "";
+        let lastY = -1;
+
+        new PdfReader().parseBuffer(dataBuffer, (err, item) => {
+            if (err) {
+                reject(err);
+            } else if (!item) {
+                resolve(fullText);
+            } else if (item.text) {
+                if (lastY !== -1 && Math.abs(item.y - lastY) > 1) {
+                    fullText += "\n"; 
+                } else if (lastY !== -1) {
+                    fullText += " "; 
+                }
+                
+                fullText += item.text;
+                lastY = item.y; 
+            }
+        });
+    });
+}
 
 const getPlantillas = async (req, res) => {
     try {
@@ -89,8 +110,6 @@ const generarDocumento = async (req, res) => {
         console.error("Error al generar documento:", err.message);
         res.status(500).json({ error: "Error interno del servidor al generar el documento." });
     }
-    // [CORRECCIÓN 2]: Eliminada la línea de abajo que causaba el error "Headers already sent".
-    // res.status(501).json({ message: "Función generarDocumento pendiente de implementación en este bloque" });
 };
 
 const analizarDocumento = async (req, res) => {
@@ -101,25 +120,17 @@ const analizarDocumento = async (req, res) => {
     try {
         const dataBuffer = req.file.buffer;
 
-        // Usamos una promesa para procesar el buffer del PDF con pdfreader
-        const textoPdf = await new Promise((resolve, reject) => {
-            let textoCompleto = "";
-            new PdfReader().parseBuffer(dataBuffer, (err, item) => {
-                if (err) {
-                    reject(err);
-                } else if (!item) {
-                    // Fin del archivo, resolvemos con el texto acumulado
-                    resolve(textoCompleto);
-                } else if (item.text) {
-                    // Acumulamos el texto de cada item
-                    textoCompleto += item.text + " ";
-                }
-            });
-        }).catch(err => {
-            throw new Error('Falló la lectura del archivo PDF. ¿Es un PDF válido?');
-        });
+        let textoCompleto = "";
+        try {
+            console.log("Procesando PDF...");
+            textoCompleto = await parsePdfBuffer(dataBuffer);
+            console.log("Texto extraído. Longitud:", textoCompleto.length);
+        } catch (pdfErr) {
+            console.error('Error leyendo el PDF:', pdfErr);
+            throw new Error('No se pudo leer el contenido del PDF. ¿El archivo es válido?');
+        }
 
-        let textoPdfSeguro = escaparHTML(textoPdf); 
+        let textoPdfSeguro = escaparHTML(textoCompleto);
 
         const terminosResult = await pool.query('SELECT id, termino, definicion FROM diccionario_terminos ORDER BY LENGTH(termino) DESC');
         const terminosDb = terminosResult.rows;
@@ -130,17 +141,30 @@ const analizarDocumento = async (req, res) => {
 
         terminosDb.forEach(item => {
             const terminoEscapado = item.termino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
+            const regex = new RegExp(`(^|[\\s\\n])(${terminoEscapado})(s|es)?(?=[\\s\\n.,;]|$)`, 'gi');
+            
             const terminoLower = item.termino.toLowerCase();
 
-            if (regex.test(textoPdfSeguro) && !terminosEncontrados.has(terminoLower)) {
+            const replaceRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
+
+            if (replaceRegex.test(textoPdfSeguro) && !terminosEncontrados.has(terminoLower)) {
                 glosario.push({
                     numero: contadorGlosario,
                     termino: item.termino,
                     definicion: item.definicion
                 });
-                textoPdfSeguro = textoPdfSeguro.replace(regex, `$1$2 <sup>[${contadorGlosario}]</sup>`);
+
+                textoPdfSeguro = textoPdfSeguro.replace(replaceRegex, `<a href="#termino-${contadorGlosario}">$1$2 <sup>[${contadorGlosario}]</sup></a>`);
+                
                 terminosEncontrados.add(terminoLower);
+                const palabrasDelTermino = item.termino.toLowerCase().split(' ');
+                if (palabrasDelTermino.length > 1) {
+                    palabrasDelTermino.forEach(palabra => {
+                        if (palabra.length > 3) { 
+                            terminosEncontrados.add(palabra); 
+                        }
+                    });
+                }
                 contadorGlosario++;
             }
         });
@@ -160,7 +184,8 @@ const analizarDocumento = async (req, res) => {
         let htmlContent = await fs.readFile(plantillaPath, 'utf8');
 
         htmlContent = htmlContent.replace('{{contenido_pdf}}', textoPdfSeguro.replace(/\n/g, '<br>'));
-        const glosarioHtml = glosario.map(g => `<li><strong>${g.termino}:</strong> ${g.definicion}</li>`).join('');
+        
+        const glosarioHtml = glosario.map(g => `<li id="termino-${g.numero}"><strong>${g.numero}. ${g.termino}:</strong> ${g.definicion}</li>`).join('');
         htmlContent = htmlContent.replace('{{glosario}}', glosarioHtml);
 
         const browser = await puppeteer.launch({ 

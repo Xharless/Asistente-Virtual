@@ -21,7 +21,7 @@
     "multer": "^2.0.2",
     "pdfreader": "^3.0.8",
     "pg": "^8.16.3",
-    "puppeteer": "^24.27.0"
+    "puppeteer": "^24.29.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
