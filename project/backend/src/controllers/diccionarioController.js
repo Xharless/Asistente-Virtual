@@ -5,12 +5,12 @@ export const buscarTerminos = async (req, res) => {
         const { termino } = req.query;
 
         if (!termino || termino.trim() === '') {
-            return res.json([]); // Si no hay término, devuelve un array vacío
+            return res.json([]); 
         }
 
         const query = `
-            SELECT * FROM diccionario_terminos 
-            WHERE termino ILIKE $1 
+            SELECT id, termino, definicion, referencia_legal FROM diccionario_terminos 
+            WHERE unaccent(termino) ILIKE unaccent($1)
             ORDER BY termino
             LIMIT 20;
         `;

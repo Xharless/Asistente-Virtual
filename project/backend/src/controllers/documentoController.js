@@ -15,6 +15,10 @@ const escaparHTML = (str) => {
     })[m]);
 };
 
+const quitarTildes = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 const formatearFecha = (fecha) => {
     if (!fecha) return '';
     const d = new Date(typeof fecha === 'string' ? `${fecha}T00:00:00` : fecha);
@@ -130,31 +134,34 @@ const analizarDocumento = async (req, res) => {
             throw new Error('No se pudo leer el contenido del PDF. ¿El archivo es válido?');
         }
 
-        let textoPdfSeguro = escaparHTML(textoCompleto);
+        const textoPdfOriginal = escaparHTML(textoCompleto);
+        const textoPdfSinTildes = quitarTildes(textoPdfOriginal);
 
         const terminosResult = await pool.query('SELECT id, termino, definicion FROM diccionario_terminos ORDER BY LENGTH(termino) DESC');
         const terminosDb = terminosResult.rows;
         
         const glosario = [];
         const terminosEncontrados = new Set();
+        let textoPdfAnotado = textoPdfOriginal;
         let contadorGlosario = 1;
 
         terminosDb.forEach(item => {
-            const terminoEscapado = item.termino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(^|[\\s\\n])(${terminoEscapado})(s|es)?(?=[\\s\\n.,;]|$)`, 'gi');
+            const terminoSinTildes = quitarTildes(item.termino);
+            const terminoEscapado = terminoSinTildes.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const searchRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
             
             const terminoLower = item.termino.toLowerCase();
 
-            const replaceRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
+            const testRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
 
-            if (replaceRegex.test(textoPdfSeguro) && !terminosEncontrados.has(terminoLower)) {
+            const replaceRegex = new RegExp(`\\b(${item.termino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(s|es)?\\b`, 'gi');
+
+            if (testRegex.test(textoPdfSinTildes) && !terminosEncontrados.has(terminoLower)) {
                 glosario.push({
                     numero: contadorGlosario,
                     termino: item.termino,
                     definicion: item.definicion
                 });
-
-                textoPdfSeguro = textoPdfSeguro.replace(replaceRegex, `<a href="#termino-${contadorGlosario}">$1$2 <sup>[${contadorGlosario}]</sup></a>`);
                 
                 terminosEncontrados.add(terminoLower);
                 const palabrasDelTermino = item.termino.toLowerCase().split(' ');
@@ -166,6 +173,10 @@ const analizarDocumento = async (req, res) => {
                     });
                 }
                 contadorGlosario++;
+
+                textoPdfAnotado = textoPdfAnotado.replace(replaceRegex, (match, p1, p2) => {
+                    return `<a href="#termino-${glosario[glosario.length - 1].numero}">${match} <sup>[${glosario[glosario.length - 1].numero}]</sup></a>`;
+                });
             }
         });
 
@@ -183,7 +194,7 @@ const analizarDocumento = async (req, res) => {
 
         let htmlContent = await fs.readFile(plantillaPath, 'utf8');
 
-        htmlContent = htmlContent.replace('{{contenido_pdf}}', textoPdfSeguro.replace(/\n/g, '<br>'));
+        htmlContent = htmlContent.replace('{{contenido_pdf}}', textoPdfAnotado.replace(/\n/g, '<br>'));
         
         const glosarioHtml = glosario.map(g => `<li id="termino-${g.numero}"><strong>${g.numero}. ${g.termino}:</strong> ${g.definicion}</li>`).join('');
         htmlContent = htmlContent.replace('{{glosario}}', glosarioHtml);
