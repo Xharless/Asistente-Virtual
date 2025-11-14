@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import apiClient from '../services/api'; 
 import useDebounce from '../hooks/useDebounce'; 
 import './BuscadorDiccionario.css'; 
-import { FaSearch, FaPlus } from 'react-icons/fa';
+import { FaSearch, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 const BuscadorDiccionario = () => {
     const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -12,6 +12,7 @@ const BuscadorDiccionario = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingTerm, setEditingTerm] = useState(null); // Para saber si estamos editando
     const [formData, setFormData] = useState({
         termino: '',
         definicion: '',
@@ -74,13 +75,19 @@ const BuscadorDiccionario = () => {
         setModalLoading(true);
         setModalError('');
 
+        const isEditing = !!editingTerm;
+        const url = isEditing ? `/api/diccionario/editar/${editingTerm.id}` : '/api/diccionario/agregar';
+        const method = isEditing ? 'put' : 'post';
+
         try {
-            await apiClient.post('/api/diccionario/agregar', formData);
+            await apiClient[method](url, formData);
 
             setModalLoading(false);
             setIsModalOpen(false);
             setFormData({ termino: '', definicion: '', referencia_legal: '' });
+            setEditingTerm(null);
             
+            // Para refrescar la lista de resultados
             if (letraSeleccionada) {
                 setLetraSeleccionada('');
             }
@@ -93,10 +100,30 @@ const BuscadorDiccionario = () => {
         }
     };
 
-    const abrirModal = () => {
+    const abrirModalParaAgregar = () => {
+        setEditingTerm(null);
         setFormData({ termino: '', definicion: '', referencia_legal: '' });
         setModalError('');
         setIsModalOpen(true);
+    };
+
+    const abrirModalParaEditar = (item) => {
+        setEditingTerm(item);
+        setFormData({
+            termino: item.termino,
+            definicion: item.definicion,
+            referencia_legal: item.referencia_legal || ''
+        });
+        setModalError('');
+        setIsModalOpen(true);
+    };
+
+    const handleEliminar = async (id) => {
+        if (window.confirm('¿Estás seguro de que quieres eliminar este término?')) {
+            await apiClient.delete(`/api/diccionario/eliminar/${id}`);
+            // Actualiza la lista de resultados filtrando el elemento eliminado
+            setResultados(resultados.filter(item => item.id !== id));
+        }
     };
 
     return (
@@ -107,7 +134,7 @@ const BuscadorDiccionario = () => {
                 
                 <div className="diccionario-header">
                     <h1>Diccionario Legal</h1>
-                    <button onClick={abrirModal} className="btn-agregar">
+                    <button onClick={abrirModalParaAgregar} className="btn-agregar">
                         <FaPlus /> Agregar Término
                     </button>
                 </div>
@@ -148,9 +175,15 @@ const BuscadorDiccionario = () => {
             <div className="resultados-lista">
                 {!isLoading && resultados.map((item) => (
                     <div key={item.id} className="result-item">
-                        <h3>{item.termino}</h3>
-                        <p>{item.definicion}</p>
-                        {item.referencia_legal && <p className="fuente-legal">Referencia: {item.referencia_legal}</p>}
+                        <div className="result-content">
+                            <h3>{item.termino}</h3>
+                            <p>{item.definicion}</p>
+                            {item.referencia_legal && <p className="fuente-legal">Referencia: {item.referencia_legal}</p>}
+                        </div>
+                        <div className="result-actions">
+                            <button onClick={() => abrirModalParaEditar(item)} className="action-btn edit-btn"><FaEdit /></button>
+                            <button onClick={() => handleEliminar(item.id)} className="action-btn delete-btn"><FaTrash /></button>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -159,7 +192,7 @@ const BuscadorDiccionario = () => {
             {isModalOpen && (
                 <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>Agregar Nuevo Término</h2>
+                        <h2>{editingTerm ? 'Editar Término' : 'Agregar Nuevo Término'}</h2>
                         <form onSubmit={handleFormSubmit}>
                             <div className="form-group">
                                 <label htmlFor="termino">Término</label>
@@ -200,7 +233,7 @@ const BuscadorDiccionario = () => {
                                 <button 
                                     type="button" 
                                     className="btn-cancelar" 
-                                    onClick={() => setIsModalOpen(false)} 
+                                        onClick={() => { setIsModalOpen(false); setEditingTerm(null); }} 
                                     disabled={modalLoading}
                                 >
                                     Cancelar
