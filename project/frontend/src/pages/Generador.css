@@ -1,5 +1,4 @@
-/* --- Estilos Unificados para Generador.css --- */
-
+/* --- Estilos Generales --- */
 .generador-container {
     background-color: #111827; /* Fondo oscuro principal */
     color: #d1d5db; /* Color de texto por defecto (gris claro) */
@@ -9,22 +8,26 @@
     flex-direction: column;
     align-items: center;
 }
+
+/* Restringir ancho del contenido (excepto el modal) */
 .generador-container > *:not(.modal-overlay) {
     width: 100%;
-    max-width: 1000px; /* Puedes ajustar esto a 800px o 1200px según prefieras */
+    max-width: 1000px;
 }
 
 .generador-container h2 {
     color: #f9fafb; /* Blanco para títulos principales */
     font-size: 1.875rem;
     font-weight: 800;
+    margin-top: 0;
 }
 
 .generador-container p {
-    color: #9ca3af; /* Gris para párrafos/descripciones */
+    color: #9ca3af; /* Gris para descripciones */
     margin-bottom: 1.5rem;
 }
 
+/* --- Header y Botón Crear --- */
 .header-flex {
     display: flex;
     justify-content: space-between;
@@ -43,72 +46,192 @@
     align-items: center;
     gap: 8px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .btn-crear-nueva:hover {
-    background-color: #1d4ed8; /* Azul primario oscuro */
+    background-color: #1d4ed8; /* Azul más oscuro */
 }
 
-/* MODAL ESTILOS */
+/* --- Formularios (Inputs y Selects) --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #1f2937; /* Fondo oscuro */
+    border: 1px solid #4b5563; /* Borde sutil */
+    border-radius: 6px;
+    color: #f9fafb; /* Texto blanco */
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+
+.form-group select option {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+/* Estilos de Error (Validación) */
+.input-error {
+    border-color: #ef4444 !important; /* Rojo */
+}
+.input-error:focus {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
+}
+.error-message {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-align: center;
+    border: 1px solid #ef4444;
+}
+.error-text {
+    display: none; /* Ocultamos el texto de error individual si usas borde rojo */
+}
+
+/* Botón Generar PDF */
+.btn-generar {
+    background-color: #10b981; /* Verde */
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+.btn-generar:hover {
+    background-color: #059669;
+}
+.btn-generar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Formulario Contenedor */
+.form-generacion {
+    background-color: #1f2937;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    border: 1px solid #374151;
+}
+
+/* --- MODAL (Crear Plantilla) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .modal-crear-plantilla {
-    background: #1f2937; /* Fondo de modal (un poco más claro) */
+    background: #1f2937;
     width: 90%;
     max-width: 1100px;
     height: 90vh;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid #374151;
 }
 
 .modal-header {
     padding: 15px 20px;
-    border-bottom: 1px solid #374151; /* Borde oscuro */
+    border-bottom: 1px solid #374151;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #f9fafb;
+    background-color: #1f2937;
+    border-radius: 8px 8px 0 0;
 }
 
 .modal-body {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    background: #111827; /* Fondo del cuerpo del modal */
+    background: #111827;
 }
 
 .modal-footer {
     padding: 15px 20px;
-    border-top: 1px solid #374151; /* Borde oscuro */
+    border-top: 1px solid #374151;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    background: #1f2937;
+    border-radius: 0 0 8px 8px;
 }
 
-/* Layout del Editor */
+/* Inputs Superiores del Modal */
+.row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-input-styled {
+    flex: 1;
+    background-color: #1f2937;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    padding: 12px 15px;
+    color: #f9fafb;
+    font-size: 1rem;
+}
+.modal-input-styled:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+.input-nombre {
+    font-weight: 600;
+}
+
+/* Layout Editor */
 .editor-layout {
     display: flex;
     gap: 20px;
-    height: 500px; /* Altura del área de trabajo */
+    height: 500px;
     margin-top: 15px;
 }
 
 .sidebar {
     width: 300px;
-    background: #1f2937; /* Mismo fondo que el modal */
+    background: #1f2937;
     padding: 15px;
     border: 1px solid #374151;
     border-radius: 5px;
@@ -116,66 +239,21 @@
     flex-direction: column;
 }
 
-.editor-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.editor-area textarea {
-    flex: 1;
-    width: 100%;
-    padding: 20px;
-    font-family: 'Times New Roman', serif;
-    font-size: 14px;
-    line-height: 1.6;
-    border: 1px solid #4b5563; /* Borde oscuro para inputs */
-    resize: none;
-}
-
-/* Chips de variables */
-.vars-list {
-    margin-top: 15px;
-    overflow-y: auto;
-    flex: 1;
-}
-
-.chip {
-    background: #374151; /* Fondo de chip oscuro */
-    color: #93c5fd; /* Texto azul claro */
-    padding: 6px 10px;
-    margin-bottom: 5px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 0.9em;
-    border: 1px solid #2563eb;
-}
-
-.chip:hover {
-    background: #4b5563;
-}
-
-.chip.system {
-    background: #374151;
-    color: #f59e0b; /* Naranja/ámbar para sistema */
-    border-color: #f59e0b;
-}
-
-/* Inputs del sidebar */
+/* Variables y Chips */
 .add-var-box {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed #ccc;
+    gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #4b5563;
 }
 
 .add-var-box input, .add-var-box select {
     padding: 8px;
     border: 1px solid #4b5563;
-    border-radius: 5px;
     background-color: #374151;
-    color: #f9fafb;
+    color: white;
+    border-radius: 4px;
 }
 
 .btn-small {
@@ -188,163 +266,140 @@
     font-weight: 500;
 }
 
-.btn-small:hover {
-    background: #1d4ed8;
+.vars-list {
+    margin-top: 15px;
+    overflow-y: auto;
+    flex: 1;
 }
+
+.chip {
+    background: #374151;
+    color: #93c5fd;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border: 1px solid #2563eb;
+    transition: all 0.2s;
+}
+.chip:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.chip.system {
+    border-color: #f59e0b;
+    color: #fcd34d;
+}
+.chip.system:hover {
+    background: #f59e0b;
+    color: white;
+}
+
+/* Botones Modal */
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-primary:hover { background-color: #1d4ed8; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+    background: transparent;
+    color: #d1d5db;
+    border: 1px solid #4b5563;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.btn-secondary:hover { background-color: #374151; color: white; }
 
 .btn-close {
     background: none;
     border: none;
+    color: #9ca3af;
     font-size: 1.2rem;
     cursor: pointer;
-    color: #9ca3af;
 }
+.btn-close:hover { color: white; }
 
-.btn-close:hover {
-    color: #f9fafb;
-}
 
-/* Estilos para botones de pie de modal */
-.btn-primary {
-    background-color: #2563eb;
-    color: white;
-}
-.btn-primary:hover {
-    background-color: #1d4ed8;
-}
-.btn-primary:disabled {
-    background-color: #374151;
-    color: #9ca3af;
-    cursor: not-allowed;
-}
+/* --- ESTILOS PARA JODIT EDITOR (INTEGRADO) --- */
 
-.btn-secondary {
-    background-color: #374151;
-    color: #f9fafb;
-    border: 1px solid #4b5563;
-}
-.btn-secondary:hover {
-    background-color: #4b5563;
-}
-
-/* Estilos para el formulario de generación */
-.form-generacion {
-    background-color: #1f2937;
-    padding: 2rem;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-}
-.row {
+.editor-area {
+    flex: 1;
     display: flex;
-    gap: 20px; /* Espacio entre los dos inputs */
-    margin-bottom: 20px;
+    flex-direction: column;
+    min-width: 0;
 }
 
-/* Estilo base para los inputs del modal */
-.modal-input-styled {
-    flex: 1; /* Para que ocupen el espacio disponible equitativamente */
-    background-color: #111827; /* Fondo muy oscuro para contraste */
-    border: 1px solid #4b5563;
+.editor-area h4 {
+    margin-top: 0;
+    color: #f9fafb;
+    margin-bottom: 10px;
+}
+
+/* Contenedor principal de Jodit */
+.editor-area .jodit-container {
+    border: 1px solid #4b5563 !important;
     border-radius: 6px;
-    padding: 12px 15px;
-    color: #f9fafb;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.modal-input-styled:focus {
-    border-color: #2563eb;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Resplandor suave */
-    background-color: #0f172a; /* Ligeramente más oscuro al enfocar */
+/* Barra de herramientas */
+.editor-area .jodit-toolbar__box {
+    background-color: #1f2937 !important;
+    border-bottom: 1px solid #4b5563 !important;
 }
 
-.modal-input-styled::placeholder {
-    color: #6b7280; /* Color gris suave para el placeholder */
+/* Iconos de la barra (Default gris claro) */
+.editor-area .jodit-toolbar-button__button {
+    color: #d1d5db !important;
+    background: transparent !important;
 }
 
-/* Si quieres que el nombre sea más importante visualmente */
-.input-nombre {
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-/* --- Estilos para el selector de plantillas --- */
-.form-group {
-    margin-bottom: 1.5rem;
+/* Iconos Hover */
+.editor-area .jodit-toolbar-button__button:hover,
+.editor-area .jodit-toolbar-button__button[aria-pressed="true"] {
+    background-color: #374151 !important;
+    color: #ffffff !important;
 }
 
-.form-group label {
-    display: block;
-    color: #9ca3af; /* Gris claro para etiquetas */
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+/* Asegurar que el SVG herede el color */
+.editor-area .jodit-toolbar-button__icon svg {
+    fill: currentColor !important;
 }
 
-.form-group select,
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: #1f2937; /* Fondo oscuro para inputs */
-    border: 1px solid #4b5563; /* Borde sutil */
-    border-radius: 6px;
-    color: #f9fafb; /* Texto blanco */
-    font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+/* Área de Escritura (Hoja Blanca) */
+.editor-area .jodit-wysiwyg {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Times New Roman', serif;
+    font-size: 14px;
+    padding: 40px !important; /* Márgenes tipo hoja */
+    min-height: 400px !important;
 }
 
-.form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #2563eb; /* Borde azul al enfocar */
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4); /* Resplandor azul */
+/* Placeholder */
+.editor-area .jodit-placeholder {
+    color: #666 !important;
+    padding: 40px !important;
 }
 
-/* Estilo específico para las opciones del select */
-.form-group select option {
-    background-color: #374151;
-    color: #f9fafb;
+/* Barra de estado inferior */
+.editor-area .jodit-statusbar {
+    background-color: #1f2937 !important;
+    border-top: 1px solid #4b5563 !important;
+    color: #6b7280 !important;
 }
 
-
-/* --- Estilos para el nuevo selector de plantillas (Tarjetas) --- */
-.plantillas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.plantilla-card {
-    background-color: #1f2937;
-    border: 2px solid #374151;
-    border-radius: 8px;
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.plantilla-card:hover {
-    transform: translateY(-5px);
-    border-color: #4b5563;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.plantilla-card.selected {
-    border-color: #2563eb; /* Azul primario para destacar */
-    background-color: #2c3a50; /* Un fondo ligeramente diferente */
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
-}
-
-.plantilla-card h4 {
-    color: #f9fafb;
-    margin: 0 0 0.5rem 0;
-}
-
-.plantilla-card p {
-    color: #9ca3af;
-    font-size: 0.9rem;
-    margin: 0;
+/* Separadores */
+.editor-area .jodit-toolbar__separator {
+    border-color: #4b5563 !important;
 }
