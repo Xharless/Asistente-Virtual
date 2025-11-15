@@ -235,11 +235,13 @@ function GeneradorDocumentos() {
                                     type="text" placeholder="Nombre del Documento" 
                                     value={nuevaPlantilla.nombre_plantilla}
                                     onChange={e => setNuevaPlantilla({...nuevaPlantilla, nombre_plantilla: e.target.value})}
+                                    className="modal-input-styled input-nombre"
                                 />
                                 <input 
                                     type="text" placeholder="Descripción breve" 
                                     value={nuevaPlantilla.descripcion}
                                     onChange={e => setNuevaPlantilla({...nuevaPlantilla, descripcion: e.target.value})}
+                                    className="modal-input-styled"
                                 />
                             </div>
 

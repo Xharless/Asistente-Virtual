@@ -1,4 +1,29 @@
-/* --- Estilos Nuevos para el Creador --- */
+/* --- Estilos Unificados para Generador.css --- */
+
+.generador-container {
+    background-color: #111827; /* Fondo oscuro principal */
+    color: #d1d5db; /* Color de texto por defecto (gris claro) */
+    padding: 2rem;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.generador-container > *:not(.modal-overlay) {
+    width: 100%;
+    max-width: 1000px; /* Puedes ajustar esto a 800px o 1200px según prefieras */
+}
+
+.generador-container h2 {
+    color: #f9fafb; /* Blanco para títulos principales */
+    font-size: 1.875rem;
+    font-weight: 800;
+}
+
+.generador-container p {
+    color: #9ca3af; /* Gris para párrafos/descripciones */
+    margin-bottom: 1.5rem;
+}
 
 .header-flex {
     display: flex;
@@ -8,7 +33,7 @@
 }
 
 .btn-crear-nueva {
-    background-color: #28a745; /* Verde */
+    background-color: #2563eb; /* Azul primario */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -21,7 +46,7 @@
 }
 
 .btn-crear-nueva:hover {
-    background-color: #218838;
+    background-color: #1d4ed8; /* Azul primario oscuro */
 }
 
 /* MODAL ESTILOS */
@@ -39,10 +64,10 @@
 }
 
 .modal-crear-plantilla {
-    background: white;
+    background: #1f2937; /* Fondo de modal (un poco más claro) */
     width: 90%;
     max-width: 1100px;
-    height: 85vh; /* Alto fijo para que parezca una ventana */
+    height: 90vh;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -51,26 +76,26 @@
 
 .modal-header {
     padding: 15px 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #374151; /* Borde oscuro */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #f9fafb;
 }
 
 .modal-body {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    background: #f8f9fa;
+    background: #111827; /* Fondo del cuerpo del modal */
 }
 
 .modal-footer {
     padding: 15px 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #374151; /* Borde oscuro */
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    background: white;
 }
 
 /* Layout del Editor */
@@ -83,9 +108,9 @@
 
 .sidebar {
     width: 300px;
-    background: white;
+    background: #1f2937; /* Mismo fondo que el modal */
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #374151;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -104,7 +129,7 @@
     font-family: 'Times New Roman', serif;
     font-size: 14px;
     line-height: 1.6;
-    border: 1px solid #ccc;
+    border: 1px solid #4b5563; /* Borde oscuro para inputs */
     resize: none;
 }
 
@@ -116,24 +141,24 @@
 }
 
 .chip {
-    background: #e3f2fd;
-    color: #1565c0;
+    background: #374151; /* Fondo de chip oscuro */
+    color: #93c5fd; /* Texto azul claro */
     padding: 6px 10px;
     margin-bottom: 5px;
     border-radius: 15px;
     cursor: pointer;
     font-size: 0.9em;
-    border: 1px solid #bbdefb;
+    border: 1px solid #2563eb;
 }
 
 .chip:hover {
-    background: #bbdefb;
+    background: #4b5563;
 }
 
 .chip.system {
-    background: #fff3e0;
-    color: #ef6c00;
-    border-color: #ffe0b2;
+    background: #374151;
+    color: #f59e0b; /* Naranja/ámbar para sistema */
+    border-color: #f59e0b;
 }
 
 /* Inputs del sidebar */
@@ -146,18 +171,25 @@
 }
 
 .add-var-box input, .add-var-box select {
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 8px;
+    border: 1px solid #4b5563;
+    border-radius: 5px;
+    background-color: #374151;
+    color: #f9fafb;
 }
 
 .btn-small {
-    background: #007bff;
+    background: #2563eb;
     color: white;
     border: none;
-    padding: 5px;
+    padding: 8px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-small:hover {
+    background: #1d4ed8;
 }
 
 .btn-close {
@@ -165,5 +197,154 @@
     border: none;
     font-size: 1.2rem;
     cursor: pointer;
-    color: #666;
+    color: #9ca3af;
+}
+
+.btn-close:hover {
+    color: #f9fafb;
+}
+
+/* Estilos para botones de pie de modal */
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+.btn-primary:disabled {
+    background-color: #374151;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #374151;
+    color: #f9fafb;
+    border: 1px solid #4b5563;
+}
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+/* Estilos para el formulario de generación */
+.form-generacion {
+    background-color: #1f2937;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+.row {
+    display: flex;
+    gap: 20px; /* Espacio entre los dos inputs */
+    margin-bottom: 20px;
+}
+
+/* Estilo base para los inputs del modal */
+.modal-input-styled {
+    flex: 1; /* Para que ocupen el espacio disponible equitativamente */
+    background-color: #111827; /* Fondo muy oscuro para contraste */
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    padding: 12px 15px;
+    color: #f9fafb;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.modal-input-styled:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Resplandor suave */
+    background-color: #0f172a; /* Ligeramente más oscuro al enfocar */
+}
+
+.modal-input-styled::placeholder {
+    color: #6b7280; /* Color gris suave para el placeholder */
+}
+
+/* Si quieres que el nombre sea más importante visualmente */
+.input-nombre {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+/* --- Estilos para el selector de plantillas --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: #9ca3af; /* Gris claro para etiquetas */
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #1f2937; /* Fondo oscuro para inputs */
+    border: 1px solid #4b5563; /* Borde sutil */
+    border-radius: 6px;
+    color: #f9fafb; /* Texto blanco */
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb; /* Borde azul al enfocar */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4); /* Resplandor azul */
+}
+
+/* Estilo específico para las opciones del select */
+.form-group select option {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+
+/* --- Estilos para el nuevo selector de plantillas (Tarjetas) --- */
+.plantillas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.plantilla-card {
+    background-color: #1f2937;
+    border: 2px solid #374151;
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.plantilla-card:hover {
+    transform: translateY(-5px);
+    border-color: #4b5563;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.plantilla-card.selected {
+    border-color: #2563eb; /* Azul primario para destacar */
+    background-color: #2c3a50; /* Un fondo ligeramente diferente */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+
+.plantilla-card h4 {
+    color: #f9fafb;
+    margin: 0 0 0.5rem 0;
+}
+
+.plantilla-card p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin: 0;
 }
