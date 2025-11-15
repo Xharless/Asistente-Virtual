@@ -1,0 +1,114 @@
+.creador-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.panel-basico {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.input-full {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.panel-editor-layout {
+    display: flex;
+    gap: 20px;
+    height: 600px; /* Altura fija para el editor */
+}
+
+/* --- Sidebar Izquierdo --- */
+.sidebar-campos {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-campo-nuevo input, .form-campo-nuevo select {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.btn-add {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.lista-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+    overflow-y: auto;
+}
+
+.chip-variable {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    color: #1565c0;
+    padding: 8px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.chip-variable:hover {
+    background: #bbdefb;
+    font-weight: bold;
+}
+
+.chip-variable.system {
+    background: #fff3e0;
+    border-color: #ffcc80;
+    color: #ef6c00;
+}
+
+/* --- Editor Derecho --- */
+.area-redaccion {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-texto {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    font-family: 'Times New Roman', serif; /* Para que se sienta como documento legal */
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.btn-guardar-final {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    border-radius: 4px;
+}

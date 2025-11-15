@@ -61,21 +61,48 @@ const getPlantillas = async (req, res) => {
     }
 };
 
+const crearPlantilla = async (req, res) => {
+    const { nombre_plantilla, descripcion, contenido_html, campos_requeridos } = req.body;
+
+    try {
+        // Convertimos el array de campos a JSON para guardarlo en Postgres
+        const camposJson = JSON.stringify(campos_requeridos);
+
+        const query = `
+            INSERT INTO plantillas_documentos 
+            (nombre_plantilla, descripcion, contenido, campos_requeridos)
+            VALUES ($1, $2, $3, $4)
+            RETURNING *;
+        `;
+
+        const values = [nombre_plantilla, descripcion, contenido_html, camposJson];
+        
+        const result = await pool.query(query, values);
+        
+        res.status(201).json(result.rows[0]);
+
+    } catch (err) {
+        console.error("Error creando plantilla:", err);
+        res.status(500).json({ error: "No se pudo guardar la plantilla." });
+    }
+};
 const generarDocumento = async (req, res) => {
     try {
         const { plantillaId } = req.params;
         const datos = req.body; 
-        const plantillaResult = await pool.query('SELECT archivo_plantilla, campos_requeridos FROM plantillas_documentos WHERE id = $1', [plantillaId]);
+        // Corregimos la consulta para obtener el contenido HTML directamente de la BD
+        const plantillaResult = await pool.query('SELECT contenido, campos_requeridos, nombre_plantilla FROM plantillas_documentos WHERE id = $1', [plantillaId]);
+        
         if (plantillaResult.rows.length === 0) {
             return res.status(404).json({ error: "Plantilla no encontrada." });
         }
-        const nombreArchivo = plantillaResult.rows[0].archivo_plantilla;
-        const plantillaPath = path.resolve(__dirname, `../plantillas/${nombreArchivo}`);
-        let htmlContent = await fs.readFile(plantillaPath, 'utf8');
+
+        let htmlContent = plantillaResult.rows[0].contenido;
         const campos = plantillaResult.rows[0].campos_requeridos;
-        Object.keys(datos).forEach(key => {
+
+        campos.forEach(campoDef => {
+            const key = campoDef.nombre_campo;
             const placeholder = new RegExp(`{{${key}}}`, 'g');
-            const campoDef = campos.find(c => c.nombre_campo === key);
             let valor = datos[key] || '';
 
             if (campoDef && campoDef.tipo === 'date' && valor) {
@@ -224,4 +251,4 @@ const analizarDocumento = async (req, res) => {
     }
 };
 
-export { generarDocumento, getPlantillas, analizarDocumento };
+export { generarDocumento, getPlantillas, analizarDocumento, crearPlantilla };
