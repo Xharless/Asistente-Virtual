@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS plantillas_documentos (
     descripcion TEXT,
     campos_requeridos JSONB NOT NULL,
     contenido TEXT NOT NULL -- Columna para guardar el contenido HTML de la plantilla
+    
 );
 
 
