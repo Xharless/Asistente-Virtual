@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../services/api'; 
 import './Generador.css';
 import { FaPlus, FaTimes } from 'react-icons/fa';
-
-// --- 1. IMPORTAMOS REACT-QUILL-NEW ---
 import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css'; // Estilos obligatorios
+import 'react-quill-new/dist/quill.snow.css'; 
+
 
 function GeneradorDocumentos() {
-    // --- Estados Originales ---
     const [plantillas, setPlantillas] = useState([]); 
     const [plantillaSeleccionada, setPlantillaSeleccionada] = useState(null); 
     const [formData, setFormData] = useState({}); 
@@ -17,8 +15,6 @@ function GeneradorDocumentos() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
-    // --- Estados del Modal ---
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [nuevaPlantilla, setNuevaPlantilla] = useState({
         nombre_plantilla: '',
@@ -28,11 +24,10 @@ function GeneradorDocumentos() {
     });
     const [nuevoCampo, setNuevoCampo] = useState({ nombre_campo: '', label: '', tipo: 'text' });
     const [modalLoading, setModalLoading] = useState(false);
+    const [isInitializing, setIsInitializing] = useState(false);
 
-    // --- 2. REFERENCIA PARA QUILL ---
     const quillRef = useRef(null);
 
-    // --- Configuración de la Barra de Herramientas ---
     const modules = {
         toolbar: [
             [{ 'header': [1, 2, false] }],
@@ -43,7 +38,6 @@ function GeneradorDocumentos() {
         ],
     };
 
-    // --- Helpers (Validación RUT) ---
     const validarRut = (rut) => {
         if (!rut || typeof rut !== 'string') return false;
         const rutLimpio = rut.replace(/[^0-9kK]/g, '').toUpperCase();
@@ -90,23 +84,29 @@ function GeneradorDocumentos() {
         }
     }, [navigate]);
 
-    useEffect(() => { fetchPlantillas(); }, [fetchPlantillas]);
+    useEffect(() => { 
+        let isMounted = true;
+        if (isMounted) {
+            fetchPlantillas();
+        }
+        return () => { isMounted = false; };
+    }, []);
 
-    const handleTemplateChange = (e) => {
-        const { value } = e.target;
+    const handleTemplateChange = (plantilla) => {
         setError('');
-        if (!value) {
+        
+        // Si se hace clic en la misma tarjeta, se deselecciona
+        if (plantillaSeleccionada && plantillaSeleccionada.id === plantilla.id) {
             setPlantillaSeleccionada(null);
             setFormData({});
-            return;
+        } else {
+            setPlantillaSeleccionada(plantilla);
+            const initialFormData = {};
+            plantilla.campos_requeridos.forEach(campo => {
+                initialFormData[campo.nombre_campo] = '';
+            });
+            setFormData(initialFormData);
         }
-        const plantillaElegida = plantillas.find(p => p.id.toString() === value);
-        setPlantillaSeleccionada(plantillaElegida);
-        const initialFormData = {};
-        plantillaElegida.campos_requeridos.forEach(campo => {
-            initialFormData[campo.nombre_campo] = '';
-        });
-        setFormData(initialFormData);
     };
 
     const handleChange = (e) => {
@@ -143,19 +143,20 @@ function GeneradorDocumentos() {
             const a = document.createElement('a');
             a.href = url;
             a.download = `${plantillaSeleccionada.nombre_plantilla.replace(/ /g, '_')}.pdf`;
+            a.setAttribute('aria-label', `Descargar ${plantillaSeleccionada.nombre_plantilla}`);
             document.body.appendChild(a);
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
+            setError('');
         } catch (err) {
             console.error(err);
-            setError('Error al generar el documento PDF.');
+            setError('Error al generar el documento PDF. Por favor intenta de nuevo.');
         } finally {
             setIsLoading(false);
         }
     };
 
-    // --- Lógica Modal ---
     const agregarCampoNuevo = () => {
         if (!nuevoCampo.nombre_campo || !nuevoCampo.label) return;
         const nombreLimpio = nuevoCampo.nombre_campo.replace(/\s+/g, '_').toLowerCase();
@@ -166,26 +167,15 @@ function GeneradorDocumentos() {
         setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
     };
 
-    // --- 4. INSERTAR VARIABLE CON QUILL (ESTO SÍ FUNCIONA) ---
     const insertarVariable = (nombreVar) => {
-        const htmlToInsert = ` {{${nombreVar}}} `;
+        const htmlToInsert = `{{${nombreVar}}}`;
         
         if (quillRef.current) {
-            // Obtenemos la instancia interna del editor Quill
             const editor = quillRef.current.getEditor();
-            
-            // Recuperamos el foco
             editor.focus();
-            
-            // Obtenemos la posición del cursor. Si no hay selección, devuelve null.
-            // Si es null, usamos la longitud del texto (lo pone al final).
             const range = editor.getSelection();
             const position = range ? range.index : editor.getLength();
-            
-            // Insertamos el texto en esa posición exacta
             editor.insertText(position, htmlToInsert);
-            
-            // Actualizamos manualmente el estado de React para sincronizar
             setNuevaPlantilla(prev => ({
                 ...prev,
                 contenido_html: editor.root.innerHTML
@@ -195,19 +185,23 @@ function GeneradorDocumentos() {
 
     const guardarNuevaPlantilla = async () => {
         if (!nuevaPlantilla.nombre_plantilla || !nuevaPlantilla.contenido_html) {
-            alert("Falta nombre o contenido.");
+            setError('Por favor completa el nombre y el contenido del documento.');
             return;
         }
         setModalLoading(true);
         try {
-            await apiClient.post('/api/documentos/crear', nuevaPlantilla);
+            const response = await apiClient.post('/api/documentos/crear', nuevaPlantilla);
             setIsModalOpen(false);
+            
+            // Agregar la nueva plantilla al estado sin recargar todo
+            setPlantillas(prev => [...prev, response.data]);
+            
             setNuevaPlantilla({ nombre_plantilla: '', descripcion: '', contenido_html: '', campos_requeridos: [] });
-            await fetchPlantillas(); 
-            alert("Plantilla creada con éxito.");
+            setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
+            setError('Plantilla creada exitosamente.');
         } catch (err) {
             console.error(err);
-            alert("Error al guardar la plantilla.");
+            setError('Error al guardar la plantilla. Por favor intenta de nuevo.');
         } finally {
             setModalLoading(false);
         }
@@ -220,21 +214,39 @@ function GeneradorDocumentos() {
         <div className="generador-container">
             <div className="header-flex">
                 <h2>Generador de Documentos</h2>
-                <button className="btn-crear-nueva" onClick={() => setIsModalOpen(true)}>
+                <button 
+                    className="btn-crear-nueva" 
+                    onClick={() => setIsModalOpen(true)}
+                    aria-label="Crear una nueva plantilla de documento"
+                    title="Crear Nueva Plantilla"
+                >
                     <FaPlus /> Crear Nueva Plantilla
                 </button>
             </div>
             
             <p>Selecciona una plantilla y completa los campos para crear tu documento.</p>
 
-            <div className="form-group">
-                <label>Selecciona una Plantilla</label>
-                <select onChange={handleTemplateChange} value={plantillaSeleccionada?.id || ""} disabled={isLoading}>
-                    <option value="">-- Elige un documento --</option>
-                    {plantillas.map(plantilla => (
-                        <option key={plantilla.id} value={plantilla.id}>{plantilla.nombre_plantilla}</option>
-                    ))}
-                </select>
+            <div className="plantillas-grid">
+                {plantillas.map(plantilla => (
+                    <div 
+                        key={plantilla.id} 
+                        className={`plantilla-card ${plantillaSeleccionada?.id === plantilla.id ? 'selected' : ''}`}
+                        onClick={() => handleTemplateChange(plantilla)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                handleTemplateChange(plantilla);
+                            }
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        aria-pressed={plantillaSeleccionada?.id === plantilla.id}
+                        aria-label={`Plantilla: ${plantilla.nombre_plantilla}. ${plantilla.descripcion}`}
+                    >
+                        <h4>{plantilla.nombre_plantilla}</h4>
+                        <p>{plantilla.descripcion}</p>
+                    </div>
+                ))}
             </div>
 
             {plantillaSeleccionada && (
@@ -243,35 +255,49 @@ function GeneradorDocumentos() {
                     <p className="desc">{plantillaSeleccionada.descripcion}</p>
                     {plantillaSeleccionada.campos_requeridos.map(campo => (
                         <div className="form-group" key={campo.nombre_campo}>
-                            <label>{campo.label}</label>
+                            <label htmlFor={campo.nombre_campo}>{campo.label}</label>
                             {campo.tipo === 'textarea' ? (
                                 <textarea
+                                    id={campo.nombre_campo}
                                     name={campo.nombre_campo}
                                     value={formData[campo.nombre_campo] || ''}
                                     onChange={handleChange}
-                                    // Aquí aplicamos la clase si hay error
                                     className={formErrors[campo.nombre_campo] ? 'input-error' : ''}
                                     required
+                                    aria-required="true"
+                                    aria-invalid={formErrors[campo.nombre_campo] ? 'true' : 'false'}
+                                    aria-describedby={formErrors[campo.nombre_campo] ? `${campo.nombre_campo}-error` : undefined}
                                 />
                             ) : (
                                 <input 
+                                    id={campo.nombre_campo}
                                     type={campo.tipo || 'text'}
                                     name={campo.nombre_campo}
                                     value={formData[campo.nombre_campo] || ''}
                                     onChange={handleChange}
-                                    // Aquí aplicamos la clase si hay error
                                     className={formErrors[campo.nombre_campo] ? 'input-error' : ''}
-                                    required 
+                                    required
+                                    aria-required="true"
+                                    aria-invalid={formErrors[campo.nombre_campo] ? 'true' : 'false'}
+                                    aria-describedby={formErrors[campo.nombre_campo] ? `${campo.nombre_campo}-error` : undefined}
                                 />
                             )}
-                            
-                            {/* --- BORRA O COMENTA ESTA LÍNEA PARA QUE NO SALGA EL TEXTO --- */}
-                            {/* {formErrors[campo.nombre_campo] && <small className="error-text">{formErrors[campo.nombre_campo]}</small>} */}
-                            
+                            {formErrors[campo.nombre_campo] && (
+                                <div id={`${campo.nombre_campo}-error`} className="error-text" style={{color: '#ef4444', fontSize: '0.85rem', marginTop: '0.25rem'}}>
+                                    {formErrors[campo.nombre_campo]}
+                                </div>
+                            )}
                         </div>
                     ))}
-                    {error && <p className="error-message">{error}</p>}
-                    <button type="submit" disabled={isLoading} className="btn-generar">Generar PDF</button>
+                    {error && <p className="error-message" role="alert">{error}</p>}
+                    <button 
+                        type="submit" 
+                        disabled={isLoading} 
+                        className="btn-generar"
+                        aria-busy={isLoading}
+                    >
+                        {isLoading ? 'Generando...' : 'Generar PDF'}
+                    </button>
                 </form>
             )}
 
@@ -280,20 +306,70 @@ function GeneradorDocumentos() {
                     <div className="modal-crear-plantilla">
                         <div className="modal-header">
                             <h3>Diseñar Nuevo Documento</h3>
-                            <button className="btn-close" onClick={() => setIsModalOpen(false)}><FaTimes /></button>
+                            <button 
+                                className="btn-close" 
+                                onClick={() => setIsModalOpen(false)}
+                                aria-label="Cerrar modal"
+                                type="button"
+                            >
+                                <FaTimes />
+                            </button>
                         </div>
                         <div className="modal-body">
                             <div className="row">
-                                <input className="modal-input-styled input-nombre" type="text" placeholder="Nombre del Documento" value={nuevaPlantilla.nombre_plantilla} onChange={e => setNuevaPlantilla({...nuevaPlantilla, nombre_plantilla: e.target.value})} />
-                                <input className="modal-input-styled" type="text" placeholder="Descripción breve" value={nuevaPlantilla.descripcion} onChange={e => setNuevaPlantilla({...nuevaPlantilla, descripcion: e.target.value})} />
+                                <input 
+                                    className="modal-input-styled input-nombre" 
+                                    type="text" 
+                                    placeholder="Nombre del Documento" 
+                                    value={nuevaPlantilla.nombre_plantilla} 
+                                    onChange={e => setNuevaPlantilla({...nuevaPlantilla, nombre_plantilla: e.target.value})} 
+                                    aria-label="Nombre del documento"
+                                />
+                                <input 
+                                    className="modal-input-styled" 
+                                    type="text" 
+                                    placeholder="Descripción breve" 
+                                    value={nuevaPlantilla.descripcion} 
+                                    onChange={e => setNuevaPlantilla({...nuevaPlantilla, descripcion: e.target.value})}
+                                    aria-label="Descripción breve del documento"
+                                />
                             </div>
                             <div className="editor-layout">
                                 <div className="sidebar">
                                     <h4>Variables</h4>
                                     <div className="add-var-box">
-                                        <input type="text" placeholder="Nombre interno" value={nuevoCampo.nombre_campo} onChange={e => setNuevoCampo({...nuevoCampo, nombre_campo: e.target.value})}/>
-                                        <input type="text" placeholder="Etiqueta" value={nuevoCampo.label} onChange={e => setNuevoCampo({...nuevoCampo, label: e.target.value})}/>
-                                        <button onClick={agregarCampoNuevo} className="btn-small">Agregar</button>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Nombre interno" 
+                                            value={nuevoCampo.nombre_campo} 
+                                            onChange={e => setNuevoCampo({...nuevoCampo, nombre_campo: e.target.value})}
+                                            aria-label="Nombre interno de la variable"
+                                        />
+                                        <input 
+                                            type="text" 
+                                            placeholder="Etiqueta" 
+                                            value={nuevoCampo.label} 
+                                            onChange={e => setNuevoCampo({...nuevoCampo, label: e.target.value})}
+                                            aria-label="Etiqueta de la variable"
+                                        />
+                                        <select 
+                                            value={nuevoCampo.tipo} 
+                                            onChange={e => setNuevoCampo({...nuevoCampo, tipo: e.target.value})}
+                                            aria-label="Tipo de variable"
+                                        >
+                                            <option value="text">Texto</option>
+                                            <option value="number">Número</option>
+                                            <option value="date">Fecha</option>
+                                            <option value="textarea">Área de texto</option>
+                                        </select>
+                                        <button 
+                                            onClick={agregarCampoNuevo} 
+                                            className="btn-small"
+                                            type="button"
+                                            aria-label="Agregar nueva variable"
+                                        >
+                                            Agregar
+                                        </button>
                                     </div>
                                     <div className="vars-list">
                                         {nuevaPlantilla.campos_requeridos.map((c, i) => (
@@ -301,33 +377,69 @@ function GeneradorDocumentos() {
                                                 key={i} 
                                                 className="chip" 
                                                 onClick={() => insertarVariable(c.nombre_campo)}
+                                                role="button"
+                                                tabIndex={0}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter' || e.key === ' ') {
+                                                        e.preventDefault();
+                                                        insertarVariable(c.nombre_campo);
+                                                    }
+                                                }}
+                                                aria-label={`Insertar variable ${c.label}`}
                                             >
                                                 + {c.label}
                                             </div>
                                         ))}
-                                        <div className="chip system" onClick={() => insertarVariable('fecha_actual')}>+ Fecha Actual</div>
+                                        <div 
+                                            className="chip system" 
+                                            onClick={() => insertarVariable('fecha_actual')}
+                                            role="button"
+                                            tabIndex={0}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                    e.preventDefault();
+                                                    insertarVariable('fecha_actual');
+                                                }
+                                            }}
+                                            aria-label="Insertar fecha actual"
+                                        >
+                                            + Fecha Actual
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="editor-area">
                                     <h4>Redacción del Contrato</h4>
-                                    
-                                    {/* --- 5. COMPONENTE REACT-QUILL --- */}
-                                    <ReactQuill 
-                                        ref={quillRef}
-                                        theme="snow"
-                                        value={nuevaPlantilla.contenido_html}
-                                        onChange={(val) => setNuevaPlantilla(prev => ({ ...prev, contenido_html: val }))}
-                                        modules={modules}
-                                        placeholder="Escribe aquí el contenido..."
-                                        className="quill-editor"
-                                    />
-                                    {/* --------------------------------- */}
+                                    {isModalOpen && (
+                                        <ReactQuill 
+                                            ref={quillRef}
+                                            theme="snow"
+                                            value={nuevaPlantilla.contenido_html}
+                                            onChange={(val) => setNuevaPlantilla(prev => ({ ...prev, contenido_html: val }))}
+                                            modules={modules}
+                                            placeholder="Escribe aquí el contenido..."
+                                            className="quill-editor"
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button onClick={() => setIsModalOpen(false)} className="btn-secondary">Cancelar</button>
-                            <button onClick={guardarNuevaPlantilla} className="btn-primary" disabled={modalLoading}>
+                            <button 
+                                onClick={() => setIsModalOpen(false)} 
+                                className="btn-secondary"
+                                type="button"
+                                aria-label="Cancelar creación de documento"
+                            >
+                                Cancelar
+                            </button>
+                            <button 
+                                onClick={guardarNuevaPlantilla} 
+                                className="btn-primary" 
+                                disabled={modalLoading}
+                                type="button"
+                                aria-busy={modalLoading}
+                                aria-label="Guardar plantilla"
+                            >
                                 {modalLoading ? 'Guardando...' : 'Guardar Plantilla'}
                             </button>
                         </div>

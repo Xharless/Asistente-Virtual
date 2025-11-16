@@ -129,7 +129,7 @@ const BuscadorDiccionario = () => {
     return (
         <React.Fragment>
             {/* Componente que inyecta el CSS */}
-            
+            <div className="generador-container">
             <div className="diccionario-container">
                 
                 <div className="diccionario-header">
@@ -250,6 +250,7 @@ const BuscadorDiccionario = () => {
                     </div>
                 </div>
             )}
+        </div>
         </div>
         </React.Fragment>
     );

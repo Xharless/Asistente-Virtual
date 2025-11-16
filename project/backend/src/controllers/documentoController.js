@@ -90,7 +90,6 @@ const generarDocumento = async (req, res) => {
     try {
         const { plantillaId } = req.params;
         const datos = req.body; 
-        // Corregimos la consulta para obtener el contenido HTML directamente de la BD
         const plantillaResult = await pool.query('SELECT contenido, campos_requeridos, nombre_plantilla FROM plantillas_documentos WHERE id = $1', [plantillaId]);
         
         if (plantillaResult.rows.length === 0) {
@@ -113,23 +112,59 @@ const generarDocumento = async (req, res) => {
 
         htmlContent = htmlContent.replace(/{{fecha_actual}}/g, formatearFecha(new Date()));
         
+        // Envolver el contenido en una estructura HTML completa con estilos
+        const fullHtml = `
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    body {
+                        font-family: 'Times New Roman', Times, serif;
+                        font-size: 12pt;
+                        line-height: 1.5;
+                        color: #000;
+                    }
+                    .document-content {
+                        width: 100%;
+                        padding: 2.5cm;
+                    }
+                    /* Preservar estilos de alineación de Quill */
+                    .ql-align-center { text-align: center; }
+                    .ql-align-right { text-align: right; }
+                    .ql-align-justify { text-align: justify; }
+                    /* Estilos de texto */
+                    strong, .ql-bold { font-weight: bold; }
+                    em, .ql-italic { font-style: italic; }
+                    u, .ql-underline { text-decoration: underline; }
+                    ol { margin-left: 1.5em; }
+                    ul { margin-left: 1.5em; }
+                    p { margin-bottom: 0.5em; }
+                    h1, h2, h3, h4, h5, h6 { margin: 1em 0 0.5em 0; }
+                </style>
+            </head>
+            <body>
+                <div class="document-content">
+                    ${htmlContent}
+                </div>
+            </body>
+            </html>
+        `;
+        
         const browser = await puppeteer.launch({
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'] 
         });
         const page = await browser.newPage();
         
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
         
         const pdfBuffer = await page.pdf({
             format: 'Letter',
             printBackground: true,
-            margin: {
-                top: '2.5cm',
-                right: '2.5cm',
-                bottom: '2.5cm',
-                left: '2.5cm'
-            }
+            margin: 0
         });
         await browser.close();
 

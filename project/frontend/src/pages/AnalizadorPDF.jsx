@@ -85,22 +85,24 @@ function AnalizadorPDF() {
     };
 
     return (
-        <div className="analizador-container">
-            <h2>Analizador de Documentos PDF</h2>
-            <p>Sube un documento en formato PDF. El sistema lo analizará, identificará términos legales y generará una versión anotada con un glosario al final.</p>
+        <div className="generador-container">
+            <div className="analizador-container">
+                <h2>Analizador de Documentos PDF</h2>
+                <p>Sube un documento en formato PDF. El sistema lo analizará, identificará términos legales y generará una versión anotada con un glosario al final.</p>
 
-            <form onSubmit={handleSubmit} className="upload-form">
-                <label htmlFor="file-upload" className="custom-file-upload">
-                    <FaFileUpload /> {nombreArchivo || 'Seleccionar archivo PDF...'}
-                </label>
-                <input id="file-upload" type="file" accept=".pdf" onChange={handleFileChange} />
+                <form onSubmit={handleSubmit} className="upload-form">
+                    <label htmlFor="file-upload" className="custom-file-upload">
+                        <FaFileUpload /> {nombreArchivo || 'Seleccionar archivo PDF...'}
+                    </label>
+                    <input id="file-upload" type="file" accept=".pdf" onChange={handleFileChange} />
 
-                <button type="submit" disabled={isLoading || !archivo}>
-                    {isLoading ? <><FaSpinner className="spinner" /> Analizando...</> : 'Analizar y Generar PDF'}
-                </button>
+                    <button type="submit" disabled={isLoading || !archivo}>
+                        {isLoading ? <><FaSpinner className="spinner" /> Analizando...</> : 'Analizar y Generar PDF'}
+                    </button>
 
-                {error && <p className="error-message">{error}</p>}
-            </form>
+                    {error && <p className="error-message">{error}</p>}
+                </form>
+            </div>
         </div>
     );
 }
