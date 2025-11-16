@@ -53,7 +53,7 @@ function parsePdfBuffer(dataBuffer) {
 
 const getPlantillas = async (req, res) => {
     try {
-        const result = await pool.query('SELECT id, nombre_plantilla, descripcion, campos_requeridos FROM plantillas_documentos ORDER BY nombre_plantilla');
+        const result = await pool.query('SELECT id, nombre_plantilla, descripcion, campos_requeridos, contenido FROM plantillas_documentos ORDER BY nombre_plantilla');
         res.json(result.rows);
     } catch (err) {
         console.error("Error al obtener plantillas:", err.message);
@@ -124,7 +124,7 @@ const generarDocumento = async (req, res) => {
                     body {
                         font-family: 'Times New Roman', Times, serif;
                         font-size: 12pt;
-                        line-height: 1.5;
+                        line-height: 1.2;
                         color: #000;
                     }
                     .document-content {
@@ -141,8 +141,14 @@ const generarDocumento = async (req, res) => {
                     u, .ql-underline { text-decoration: underline; }
                     ol { margin-left: 1.5em; }
                     ul { margin-left: 1.5em; }
-                    p { margin-bottom: 0.5em; }
-                    h1, h2, h3, h4, h5, h6 { margin: 1em 0 0.5em 0; }
+                    p { 
+                        margin-bottom: 0.3em;
+                        line-height: 1.2;
+                    }
+                    h1, h2, h3, h4, h5, h6 { 
+                        margin: 0.5em 0 0.3em 0;
+                        line-height: 1.2;
+                    }
                 </style>
             </head>
             <body>
@@ -286,4 +292,54 @@ const analizarDocumento = async (req, res) => {
     }
 };
 
-export { generarDocumento, getPlantillas, analizarDocumento, crearPlantilla };
+const actualizarPlantilla = async (req, res) => {
+    const { plantillaId } = req.params;
+    const { nombre_plantilla, descripcion, contenido_html, campos_requeridos } = req.body;
+
+    try {
+        const camposJson = JSON.stringify(campos_requeridos);
+
+        const query = `
+            UPDATE plantillas_documentos 
+            SET nombre_plantilla = $1, descripcion = $2, contenido = $3, campos_requeridos = $4
+            WHERE id = $5
+            RETURNING *;
+        `;
+
+        const values = [nombre_plantilla, descripcion, contenido_html, camposJson, plantillaId];
+        
+        const result = await pool.query(query, values);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Plantilla no encontrada." });
+        }
+        
+        res.status(200).json(result.rows[0]);
+
+    } catch (err) {
+        console.error("Error actualizando plantilla:", err);
+        res.status(500).json({ error: "No se pudo actualizar la plantilla." });
+    }
+};
+
+const eliminarPlantilla = async (req, res) => {
+    const { plantillaId } = req.params;
+
+    try {
+        const query = `DELETE FROM plantillas_documentos WHERE id = $1 RETURNING id;`;
+        
+        const result = await pool.query(query, [plantillaId]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Plantilla no encontrada." });
+        }
+        
+        res.status(200).json({ message: "Plantilla eliminada correctamente.", id: result.rows[0].id });
+
+    } catch (err) {
+        console.error("Error eliminando plantilla:", err);
+        res.status(500).json({ error: "No se pudo eliminar la plantilla." });
+    }
+};
+
+export { generarDocumento, getPlantillas, analizarDocumento, crearPlantilla, actualizarPlantilla, eliminarPlantilla };

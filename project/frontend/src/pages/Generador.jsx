@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../services/api'; 
 import './Generador.css';
-import { FaPlus, FaTimes } from 'react-icons/fa';
+import { FaPlus, FaTimes, FaEdit, FaTrash, FaFileAlt, FaCog } from 'react-icons/fa';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css'; 
 
@@ -16,6 +16,7 @@ function GeneradorDocumentos() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modoEdicion, setModoEdicion] = useState(null); // null = crear, id = editar
     const [nuevaPlantilla, setNuevaPlantilla] = useState({
         nombre_plantilla: '',
         descripcion: '',
@@ -25,6 +26,7 @@ function GeneradorDocumentos() {
     const [nuevoCampo, setNuevoCampo] = useState({ nombre_campo: '', label: '', tipo: 'text' });
     const [modalLoading, setModalLoading] = useState(false);
     const [isInitializing, setIsInitializing] = useState(false);
+    const [quillKey, setQuillKey] = useState(0); // Para forzar rerender del Quill
 
     const quillRef = useRef(null);
 
@@ -109,6 +111,27 @@ function GeneradorDocumentos() {
         }
     };
 
+    const abrirModalCrear = () => {
+        setModoEdicion(null);
+        setNuevaPlantilla({ nombre_plantilla: '', descripcion: '', contenido_html: '', campos_requeridos: [] });
+        setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
+        setQuillKey(prev => prev + 1); // Forzar rerender del Quill
+        setIsModalOpen(true);
+    };
+
+    const abrirModalEditar = (plantilla) => {
+        setModoEdicion(plantilla.id);
+        setNuevaPlantilla({
+            nombre_plantilla: plantilla.nombre_plantilla,
+            descripcion: plantilla.descripcion,
+            contenido_html: plantilla.contenido,
+            campos_requeridos: plantilla.campos_requeridos
+        });
+        setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
+        setQuillKey(prev => prev + 1); // Forzar rerender del Quill
+        setIsModalOpen(true);
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.includes('rut')) {
@@ -158,11 +181,20 @@ function GeneradorDocumentos() {
     };
 
     const agregarCampoNuevo = () => {
-        if (!nuevoCampo.nombre_campo || !nuevoCampo.label) return;
+        if (!nuevoCampo.nombre_campo) return;
         const nombreLimpio = nuevoCampo.nombre_campo.replace(/\s+/g, '_').toLowerCase();
+        // Generar label automáticamente del nombre_campo: reemplazar _ con espacios y capitalizar
+        const labelGenerado = nombreLimpio
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, char => char.toUpperCase());
+        
         setNuevaPlantilla(prev => ({
             ...prev,
-            campos_requeridos: [...prev.campos_requeridos, { ...nuevoCampo, nombre_campo: nombreLimpio }]
+            campos_requeridos: [...prev.campos_requeridos, { 
+                nombre_campo: nombreLimpio, 
+                label: labelGenerado, 
+                tipo: nuevoCampo.tipo 
+            }]
         }));
         setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
     };
@@ -190,20 +222,44 @@ function GeneradorDocumentos() {
         }
         setModalLoading(true);
         try {
-            const response = await apiClient.post('/api/documentos/crear', nuevaPlantilla);
+            if (modoEdicion) {
+                // Actualizar plantilla existente
+                const response = await apiClient.put(`/api/documentos/actualizar/${modoEdicion}`, nuevaPlantilla);
+                setPlantillas(prev => prev.map(p => p.id === modoEdicion ? response.data : p));
+            } else {
+                // Crear nueva plantilla
+                const response = await apiClient.post('/api/documentos/crear', nuevaPlantilla);
+                setPlantillas(prev => [...prev, response.data]);
+            }
             setIsModalOpen(false);
-            
-            // Agregar la nueva plantilla al estado sin recargar todo
-            setPlantillas(prev => [...prev, response.data]);
-            
+            setModoEdicion(null);
             setNuevaPlantilla({ nombre_plantilla: '', descripcion: '', contenido_html: '', campos_requeridos: [] });
             setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
-            setError('Plantilla creada exitosamente.');
         } catch (err) {
             console.error(err);
-            setError('Error al guardar la plantilla. Por favor intenta de nuevo.');
+            setError(modoEdicion ? 'Error al actualizar plantilla.' : 'Error al guardar plantilla.');
         } finally {
             setModalLoading(false);
+        }
+    };
+
+    const eliminarPlantilla = async (plantillaId) => {
+        if (!window.confirm('¿Estás seguro de que quieres eliminar esta plantilla? Esta acción no se puede deshacer.')) {
+            return;
+        }
+        setIsLoading(true);
+        try {
+            await apiClient.delete(`/api/documentos/eliminar/${plantillaId}`);
+            setPlantillas(prev => prev.filter(p => p.id !== plantillaId));
+            if (plantillaSeleccionada?.id === plantillaId) {
+                setPlantillaSeleccionada(null);
+                setFormData({});
+            }
+        } catch (err) {
+            console.error(err);
+            setError('Error al eliminar plantilla.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -215,8 +271,8 @@ function GeneradorDocumentos() {
             <div className="header-flex">
                 <h2>Generador de Documentos</h2>
                 <button 
-                    className="btn-crear-nueva" 
-                    onClick={() => setIsModalOpen(true)}
+                    className="btn-crear-nueva"
+                    onClick={abrirModalCrear}
                     aria-label="Crear una nueva plantilla de documento"
                     title="Crear Nueva Plantilla"
                 >
@@ -226,39 +282,83 @@ function GeneradorDocumentos() {
             
             <p>Selecciona una plantilla y completa los campos para crear tu documento.</p>
 
-            <div className="plantillas-grid">
-                {plantillas.map(plantilla => (
-                    <div 
-                        key={plantilla.id} 
-                        className={`plantilla-card ${plantillaSeleccionada?.id === plantilla.id ? 'selected' : ''}`}
-                        onClick={() => handleTemplateChange(plantilla)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                handleTemplateChange(plantilla);
-                            }
-                        }}
-                        role="button"
-                        tabIndex={0}
-                        aria-pressed={plantillaSeleccionada?.id === plantilla.id}
-                        aria-label={`Plantilla: ${plantilla.nombre_plantilla}. ${plantilla.descripcion}`}
-                    >
-                        <h4>{plantilla.nombre_plantilla}</h4>
-                        <p>{plantilla.descripcion}</p>
-                    </div>
-                ))}
-            </div>
+            <div className="generador-layout">
+                <div className="plantillas-grid">
+                    {plantillas.map(plantilla => (
+                        <div 
+                            key={plantilla.id} 
+                            className={`plantilla-card ${plantillaSeleccionada?.id === plantilla.id ? 'selected' : ''}`}
+                            onClick={() => handleTemplateChange(plantilla)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleTemplateChange(plantilla);
+                                }
+                            }}
+                            role="button"
+                            tabIndex={0}
+                            aria-pressed={plantillaSeleccionada?.id === plantilla.id}
+                            aria-label={`Plantilla: ${plantilla.nombre_plantilla}. ${plantilla.descripcion}`}
+                        >
+                            <div className="plantilla-card-header">
+                                <div className="plantilla-icon"><FaFileAlt /></div>
+                                <div className="plantilla-card-title-group">
+                                    <h4>{plantilla.nombre_plantilla}</h4>
+                                    <p className="plantilla-card-subtitle">Plantilla legal</p>
+                                </div>
+                            </div>
+                            <div className="plantilla-card-body">
+                                <p>{plantilla.descripcion}</p>
+                            </div>
+                            <div className="plantilla-card-footer">
+                                <div className="plantilla-meta">
+                                    <div className="plantilla-meta-item">
+                                        <span><FaCog /></span>
+                                        <span>Configurable</span>
+                                    </div>
+                                </div>
+                                <div className="plantilla-actions">
+                                    <button
+                                        className="btn-action btn-edit"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            abrirModalEditar(plantilla);
+                                        }}
+                                        title="Editar plantilla"
+                                        aria-label={`Editar plantilla ${plantilla.nombre_plantilla}`}
+                                    >
+                                        <FaEdit />
+                                    </button>
+                                    <button
+                                        className="btn-action btn-delete"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            eliminarPlantilla(plantilla.id);
+                                        }}
+                                        title="Eliminar plantilla"
+                                        aria-label={`Eliminar plantilla ${plantilla.nombre_plantilla}`}
+                                    >
+                                        <FaTrash />
+                                    </button>
+                                    <span className="plantilla-badge">
+                                        {plantillaSeleccionada?.id === plantilla.id ? '✓ Seleccionada' : 'Seleccionar'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
-            {plantillaSeleccionada && (
-                <form onSubmit={handleSubmit} className="form-generacion">
-                    <h3>{plantillaSeleccionada.nombre_plantilla}</h3>
-                    <p className="desc">{plantillaSeleccionada.descripcion}</p>
-                    {plantillaSeleccionada.campos_requeridos.map(campo => (
-                        <div className="form-group" key={campo.nombre_campo}>
-                            <label htmlFor={campo.nombre_campo}>{campo.label}</label>
-                            {campo.tipo === 'textarea' ? (
-                                <textarea
-                                    id={campo.nombre_campo}
+                {plantillaSeleccionada && (
+                    <form onSubmit={handleSubmit} className="form-generacion">
+                        <h3>{plantillaSeleccionada.nombre_plantilla}</h3>
+                        <p className="desc">{plantillaSeleccionada.descripcion}</p>
+                        {plantillaSeleccionada.campos_requeridos.map(campo => (
+                            <div className="form-group" key={campo.nombre_campo}>
+                                <label htmlFor={campo.nombre_campo}>{campo.label}</label>
+                                {campo.tipo === 'textarea' ? (
+                                    <textarea
+                                        id={campo.nombre_campo}
                                     name={campo.nombre_campo}
                                     value={formData[campo.nombre_campo] || ''}
                                     onChange={handleChange}
@@ -299,15 +399,16 @@ function GeneradorDocumentos() {
                         {isLoading ? 'Generando...' : 'Generar PDF'}
                     </button>
                 </form>
-            )}
+                )}
+            </div>
 
             {isModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal-crear-plantilla">
                         <div className="modal-header">
-                            <h3>Diseñar Nuevo Documento</h3>
+                            <h3>{modoEdicion ? 'Editar Documento' : 'Diseñar Nuevo Documento'}</h3>
                             <button 
-                                className="btn-close" 
+                                className="btn-close"
                                 onClick={() => setIsModalOpen(false)}
                                 aria-label="Cerrar modal"
                                 type="button"
@@ -340,18 +441,22 @@ function GeneradorDocumentos() {
                                     <div className="add-var-box">
                                         <input 
                                             type="text" 
-                                            placeholder="Nombre interno" 
+                                            placeholder="Nombre de la variable" 
                                             value={nuevoCampo.nombre_campo} 
                                             onChange={e => setNuevoCampo({...nuevoCampo, nombre_campo: e.target.value})}
                                             aria-label="Nombre interno de la variable"
                                         />
-                                        <input 
-                                            type="text" 
-                                            placeholder="Etiqueta" 
-                                            value={nuevoCampo.label} 
-                                            onChange={e => setNuevoCampo({...nuevoCampo, label: e.target.value})}
-                                            aria-label="Etiqueta de la variable"
-                                        />
+                                        {nuevoCampo.nombre_campo && (
+                                            <div className="label-preview">
+                                                <small>Etiqueta:</small>
+                                                <p>{nuevoCampo.nombre_campo
+                                                    .replace(/\s+/g, '_')
+                                                    .toLowerCase()
+                                                    .replace(/_/g, ' ')
+                                                    .replace(/\b\w/g, char => char.toUpperCase())
+                                                }</p>
+                                            </div>
+                                        )}
                                         <select 
                                             value={nuevoCampo.tipo} 
                                             onChange={e => setNuevoCampo({...nuevoCampo, tipo: e.target.value})}
@@ -411,6 +516,7 @@ function GeneradorDocumentos() {
                                     <h4>Redacción del Contrato</h4>
                                     {isModalOpen && (
                                         <ReactQuill 
+                                            key={quillKey}
                                             ref={quillRef}
                                             theme="snow"
                                             value={nuevaPlantilla.contenido_html}
@@ -438,9 +544,9 @@ function GeneradorDocumentos() {
                                 disabled={modalLoading}
                                 type="button"
                                 aria-busy={modalLoading}
-                                aria-label="Guardar plantilla"
+                                aria-label={modoEdicion ? 'Actualizar plantilla' : 'Guardar plantilla'}
                             >
-                                {modalLoading ? 'Guardando...' : 'Guardar Plantilla'}
+                                {modalLoading ? 'Guardando...' : modoEdicion ? 'Actualizar Plantilla' : 'Guardar Plantilla'}
                             </button>
                         </div>
                     </div>
