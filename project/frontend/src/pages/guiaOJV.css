@@ -1,0 +1,81 @@
+/* Contenedor principal con diseño oscuro igual al de Generador */
+.guia-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: #1f2937; /* Fondo oscuro */
+    border-radius: 8px;
+    border: 1px solid #374151;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Título principal */
+.guia-container h2 {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #f9fafb;
+    margin-bottom: 1.5rem;
+}
+
+/* Texto introductorio */
+.intro {
+    text-align: center;
+    color: #9ca3af;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Sección de la guía */
+.guia-section {
+    margin-bottom: 2rem;
+    background-color: #374151;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #4b5563;
+}
+
+/* Subtítulos de secciones */
+.guia-section h3 {
+    color: #f9fafb;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #4b5563;
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+/* Texto dentro de la sección */
+.guia-section p {
+    color: #d1d5db;
+    line-height: 1.6;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #374151;
+    color: #f9fafb;
+    border: 1px solid #4b5563;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+}
