@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       }, 
       {
         path: 'guia-ojv',
-        element: <GuiaOJV />, // Placeholder para la guía
+        element: <GuiaOJV />, 
       },{
         path: 'analizador',
         element: <AnalizadorPDF />

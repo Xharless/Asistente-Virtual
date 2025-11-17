@@ -3,8 +3,10 @@ import "./guiaOJV.css";
 import {
   cargarRevisarCausa,
   cargarEnviarEscrito,
+  cargarRevisarEscrito,
   descripcionesRevisar,
-  descripcionesEscrito
+  descripcionesEscrito,
+  descripcionesRevEscrito
 } from "../hooks/cargarImagenes";
 
 
@@ -13,6 +15,7 @@ export default function GuiaOJV() {
 
   const revisarImgs = cargarRevisarCausa();
   const escritoImgs = cargarEnviarEscrito();
+  const revEscritoImgs = cargarRevisarEscrito();
 
   return (
     <div className="guia-container">
@@ -72,27 +75,38 @@ export default function GuiaOJV() {
         </section>
       )}
 
+      {/* REVISAR ESCRITO */}
       {accion === "estado" && (
         <section className="guia-section">
           <h3>Ver estado de un escrito</h3>
-          <p>1. Acceda al menú "Mis presentaciones".</p>
-          <p>2. Busque el escrito enviado.</p>
-          <p>3. Verifique su estado.</p>
+          {revEscritoImgs.map((img, index) => (
+            <div key={index} className="guia-paso">
+              <h4>Paso {index + 1}</h4>
+              <p className="descripcion-paso">{descripcionesRevEscrito[index]}</p>
+              <img
+                src={img}
+                alt={`Paso ${index + 1}`}
+                className="guia-imagen"
+              />
+            </div>
+          ))}
         </section>
       )}
 
       {accion === "notificaciones" && (
         <section className="guia-section">
           <h3>Revisar notificaciones</h3>
-          <p>1. Ingrese a "Notificaciones electrónicas".</p>
-          <p>2. Lea las notificaciones pendientes.</p>
+          <p>1. Ingrese a la Oficina Judicial Virtual.</p>
+          <p>2. Ingrese a "Mis Notificaciones".</p>
+          <p>3. Lea las notificaciones pendientes.</p>
         </section>
       )}
 
       {accion === "audiencias" && (
         <section className="guia-section">
           <h3>Consultar audiencias</h3>
-          <p>1. Diríjase a "Agenda de audiencias".</p>
+          <p>1. Ingrese a la Oficina Judicial Virtual.</p>
+          <p>2. Diríjase a "Consulta Audiencias".</p>
         </section>
       )}
     </div>
