@@ -79,3 +79,30 @@
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
 }
+
+/* Contenedor de cada paso */
+.guia-paso {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #111827; 
+    border-radius: 8px;
+    border: 1px solid #374151;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Texto de paso */
+.guia-paso h4 {
+    margin-bottom: 0.5rem;
+    color: #f9fafb;
+}
+
+/* Imágenes dentro de la guía */
+.guia-imagen {
+    width: 100%;              
+    max-width: 100%;          
+    height: auto;             
+    border-radius: 6px;
+    border: 1px solid #4b5563;
+    margin-top: 0.5rem;
+    display: block;
+}
