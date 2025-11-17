@@ -4,7 +4,8 @@ import apiClient from '../services/api';
 import './Generador.css';
 import { FaPlus, FaTimes, FaEdit, FaTrash, FaFileAlt, FaCog } from 'react-icons/fa';
 import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css'; 
+import 'react-quill-new/dist/quill.snow.css';
+import Toast from '../components/Toast'; 
 
 
 function GeneradorDocumentos() {
@@ -27,6 +28,7 @@ function GeneradorDocumentos() {
     const [modalLoading, setModalLoading] = useState(false);
     const [isInitializing, setIsInitializing] = useState(false);
     const [quillKey, setQuillKey] = useState(0); // Para forzar rerender del Quill
+    const [toast, setToast] = useState(null); // Estado para notificaciones
 
     const quillRef = useRef(null);
 
@@ -217,7 +219,7 @@ function GeneradorDocumentos() {
 
     const guardarNuevaPlantilla = async () => {
         if (!nuevaPlantilla.nombre_plantilla || !nuevaPlantilla.contenido_html) {
-            setError('Por favor completa el nombre y el contenido del documento.');
+            setToast({ message: 'Por favor completa el nombre y el contenido del documento.', type: 'error' });
             return;
         }
         setModalLoading(true);
@@ -226,10 +228,12 @@ function GeneradorDocumentos() {
                 // Actualizar plantilla existente
                 const response = await apiClient.put(`/api/documentos/actualizar/${modoEdicion}`, nuevaPlantilla);
                 setPlantillas(prev => prev.map(p => p.id === modoEdicion ? response.data : p));
+                setToast({ message: '✓ Plantilla actualizada correctamente', type: 'success' });
             } else {
                 // Crear nueva plantilla
                 const response = await apiClient.post('/api/documentos/crear', nuevaPlantilla);
                 setPlantillas(prev => [...prev, response.data]);
+                setToast({ message: '✓ Plantilla creada correctamente', type: 'success' });
             }
             setIsModalOpen(false);
             setModoEdicion(null);
@@ -237,7 +241,8 @@ function GeneradorDocumentos() {
             setNuevoCampo({ nombre_campo: '', label: '', tipo: 'text' });
         } catch (err) {
             console.error(err);
-            setError(modoEdicion ? 'Error al actualizar plantilla.' : 'Error al guardar plantilla.');
+            const errorMsg = modoEdicion ? 'Error al actualizar plantilla.' : 'Error al guardar plantilla.';
+            setToast({ message: errorMsg, type: 'error' });
         } finally {
             setModalLoading(false);
         }
@@ -255,9 +260,10 @@ function GeneradorDocumentos() {
                 setPlantillaSeleccionada(null);
                 setFormData({});
             }
+            setToast({ message: '✓ Plantilla eliminada correctamente', type: 'success' });
         } catch (err) {
             console.error(err);
-            setError('Error al eliminar plantilla.');
+            setToast({ message: 'Error al eliminar plantilla.', type: 'error' });
         } finally {
             setIsLoading(false);
         }
@@ -551,6 +557,14 @@ function GeneradorDocumentos() {
                         </div>
                     </div>
                 </div>
+            )}
+            
+            {toast && (
+                <Toast 
+                    message={toast.message} 
+                    type={toast.type} 
+                    onClose={() => setToast(null)} 
+                />
             )}
         </div>
     );
