@@ -23,17 +23,11 @@ CREATE TABLE IF NOT EXISTS plantillas_documentos (
     nombre_plantilla VARCHAR(255) UNIQUE NOT NULL,
     descripcion TEXT,
     campos_requeridos JSONB NOT NULL,
-    archivo_plantilla VARCHAR(255) NOT NULL -- Columna para el nombre del archivo HTML
+    contenido TEXT NOT NULL -- Columna para guardar el contenido HTML de la plantilla
+    
 );
 
--- Documentos generados
-CREATE TABLE IF NOT EXISTS documentos_generados (
-    id SERIAL PRIMARY KEY,
-    usuario_id INT NOT NULL REFERENCES usuarios(id),
-    plantilla_id INT NOT NULL REFERENCES plantillas_documentos(id),
-    datos_ingresados JSONB NOT NULL,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+
 
 -- Guias
 CREATE TABLE IF NOT EXISTS guias_ojv (

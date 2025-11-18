@@ -15,6 +15,10 @@ const escaparHTML = (str) => {
     })[m]);
 };
 
+const quitarTildes = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 const formatearFecha = (fecha) => {
     if (!fecha) return '';
     const d = new Date(typeof fecha === 'string' ? `${fecha}T00:00:00` : fecha);
@@ -49,7 +53,7 @@ function parsePdfBuffer(dataBuffer) {
 
 const getPlantillas = async (req, res) => {
     try {
-        const result = await pool.query('SELECT id, nombre_plantilla, descripcion, campos_requeridos FROM plantillas_documentos ORDER BY nombre_plantilla');
+        const result = await pool.query('SELECT id, nombre_plantilla, descripcion, campos_requeridos, contenido FROM plantillas_documentos ORDER BY nombre_plantilla');
         res.json(result.rows);
     } catch (err) {
         console.error("Error al obtener plantillas:", err.message);
@@ -57,21 +61,47 @@ const getPlantillas = async (req, res) => {
     }
 };
 
+const crearPlantilla = async (req, res) => {
+    const { nombre_plantilla, descripcion, contenido_html, campos_requeridos } = req.body;
+
+    try {
+        // Convertimos el array de campos a JSON para guardarlo en Postgres
+        const camposJson = JSON.stringify(campos_requeridos);
+
+        const query = `
+            INSERT INTO plantillas_documentos 
+            (nombre_plantilla, descripcion, contenido, campos_requeridos)
+            VALUES ($1, $2, $3, $4)
+            RETURNING *;
+        `;
+
+        const values = [nombre_plantilla, descripcion, contenido_html, camposJson];
+        
+        const result = await pool.query(query, values);
+        
+        res.status(201).json(result.rows[0]);
+
+    } catch (err) {
+        console.error("Error creando plantilla:", err);
+        res.status(500).json({ error: "No se pudo guardar la plantilla." });
+    }
+};
 const generarDocumento = async (req, res) => {
     try {
         const { plantillaId } = req.params;
         const datos = req.body; 
-        const plantillaResult = await pool.query('SELECT archivo_plantilla, campos_requeridos FROM plantillas_documentos WHERE id = $1', [plantillaId]);
+        const plantillaResult = await pool.query('SELECT contenido, campos_requeridos, nombre_plantilla FROM plantillas_documentos WHERE id = $1', [plantillaId]);
+        
         if (plantillaResult.rows.length === 0) {
             return res.status(404).json({ error: "Plantilla no encontrada." });
         }
-        const nombreArchivo = plantillaResult.rows[0].archivo_plantilla;
-        const plantillaPath = path.resolve(__dirname, `../plantillas/${nombreArchivo}`);
-        let htmlContent = await fs.readFile(plantillaPath, 'utf8');
+
+        let htmlContent = plantillaResult.rows[0].contenido;
         const campos = plantillaResult.rows[0].campos_requeridos;
-        Object.keys(datos).forEach(key => {
+
+        campos.forEach(campoDef => {
+            const key = campoDef.nombre_campo;
             const placeholder = new RegExp(`{{${key}}}`, 'g');
-            const campoDef = campos.find(c => c.nombre_campo === key);
             let valor = datos[key] || '';
 
             if (campoDef && campoDef.tipo === 'date' && valor) {
@@ -82,23 +112,65 @@ const generarDocumento = async (req, res) => {
 
         htmlContent = htmlContent.replace(/{{fecha_actual}}/g, formatearFecha(new Date()));
         
+        // Envolver el contenido en una estructura HTML completa con estilos
+        const fullHtml = `
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    body {
+                        font-family: 'Times New Roman', Times, serif;
+                        font-size: 12pt;
+                        line-height: 1.2;
+                        color: #000;
+                    }
+                    .document-content {
+                        width: 100%;
+                        padding: 2.5cm;
+                    }
+                    /* Preservar estilos de alineación de Quill */
+                    .ql-align-center { text-align: center; }
+                    .ql-align-right { text-align: right; }
+                    .ql-align-justify { text-align: justify; }
+                    /* Estilos de texto */
+                    strong, .ql-bold { font-weight: bold; }
+                    em, .ql-italic { font-style: italic; }
+                    u, .ql-underline { text-decoration: underline; }
+                    ol { margin-left: 1.5em; }
+                    ul { margin-left: 1.5em; }
+                    p { 
+                        margin-bottom: 0.3em;
+                        line-height: 1.2;
+                    }
+                    h1, h2, h3, h4, h5, h6 { 
+                        margin: 0.5em 0 0.3em 0;
+                        line-height: 1.2;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="document-content">
+                    ${htmlContent}
+                </div>
+            </body>
+            </html>
+        `;
+        
         const browser = await puppeteer.launch({
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'] 
         });
         const page = await browser.newPage();
         
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
         
         const pdfBuffer = await page.pdf({
             format: 'Letter',
             printBackground: true,
-            margin: {
-                top: '2.5cm',
-                right: '2.5cm',
-                bottom: '2.5cm',
-                left: '2.5cm'
-            }
+            margin: 0
         });
         await browser.close();
 
@@ -130,31 +202,34 @@ const analizarDocumento = async (req, res) => {
             throw new Error('No se pudo leer el contenido del PDF. ¿El archivo es válido?');
         }
 
-        let textoPdfSeguro = escaparHTML(textoCompleto);
+        const textoPdfOriginal = escaparHTML(textoCompleto);
+        const textoPdfSinTildes = quitarTildes(textoPdfOriginal);
 
         const terminosResult = await pool.query('SELECT id, termino, definicion FROM diccionario_terminos ORDER BY LENGTH(termino) DESC');
         const terminosDb = terminosResult.rows;
         
         const glosario = [];
         const terminosEncontrados = new Set();
+        let textoPdfAnotado = textoPdfOriginal;
         let contadorGlosario = 1;
 
         terminosDb.forEach(item => {
-            const terminoEscapado = item.termino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(^|[\\s\\n])(${terminoEscapado})(s|es)?(?=[\\s\\n.,;]|$)`, 'gi');
+            const terminoSinTildes = quitarTildes(item.termino);
+            const terminoEscapado = terminoSinTildes.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const searchRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
             
             const terminoLower = item.termino.toLowerCase();
 
-            const replaceRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
+            const testRegex = new RegExp(`\\b(${terminoEscapado})(s|es)?\\b`, 'gi');
 
-            if (replaceRegex.test(textoPdfSeguro) && !terminosEncontrados.has(terminoLower)) {
+            const replaceRegex = new RegExp(`\\b(${item.termino.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(s|es)?\\b`, 'gi');
+
+            if (testRegex.test(textoPdfSinTildes) && !terminosEncontrados.has(terminoLower)) {
                 glosario.push({
                     numero: contadorGlosario,
                     termino: item.termino,
                     definicion: item.definicion
                 });
-
-                textoPdfSeguro = textoPdfSeguro.replace(replaceRegex, `<a href="#termino-${contadorGlosario}">$1$2 <sup>[${contadorGlosario}]</sup></a>`);
                 
                 terminosEncontrados.add(terminoLower);
                 const palabrasDelTermino = item.termino.toLowerCase().split(' ');
@@ -166,6 +241,10 @@ const analizarDocumento = async (req, res) => {
                     });
                 }
                 contadorGlosario++;
+
+                textoPdfAnotado = textoPdfAnotado.replace(replaceRegex, (match, p1, p2) => {
+                    return `<a href="#termino-${glosario[glosario.length - 1].numero}">${match} <sup>[${glosario[glosario.length - 1].numero}]</sup></a>`;
+                });
             }
         });
 
@@ -183,7 +262,7 @@ const analizarDocumento = async (req, res) => {
 
         let htmlContent = await fs.readFile(plantillaPath, 'utf8');
 
-        htmlContent = htmlContent.replace('{{contenido_pdf}}', textoPdfSeguro.replace(/\n/g, '<br>'));
+        htmlContent = htmlContent.replace('{{contenido_pdf}}', textoPdfAnotado.replace(/\n/g, '<br>'));
         
         const glosarioHtml = glosario.map(g => `<li id="termino-${g.numero}"><strong>${g.numero}. ${g.termino}:</strong> ${g.definicion}</li>`).join('');
         htmlContent = htmlContent.replace('{{glosario}}', glosarioHtml);
@@ -213,4 +292,54 @@ const analizarDocumento = async (req, res) => {
     }
 };
 
-export { generarDocumento, getPlantillas, analizarDocumento };
+const actualizarPlantilla = async (req, res) => {
+    const { plantillaId } = req.params;
+    const { nombre_plantilla, descripcion, contenido_html, campos_requeridos } = req.body;
+
+    try {
+        const camposJson = JSON.stringify(campos_requeridos);
+
+        const query = `
+            UPDATE plantillas_documentos 
+            SET nombre_plantilla = $1, descripcion = $2, contenido = $3, campos_requeridos = $4
+            WHERE id = $5
+            RETURNING *;
+        `;
+
+        const values = [nombre_plantilla, descripcion, contenido_html, camposJson, plantillaId];
+        
+        const result = await pool.query(query, values);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Plantilla no encontrada." });
+        }
+        
+        res.status(200).json(result.rows[0]);
+
+    } catch (err) {
+        console.error("Error actualizando plantilla:", err);
+        res.status(500).json({ error: "No se pudo actualizar la plantilla." });
+    }
+};
+
+const eliminarPlantilla = async (req, res) => {
+    const { plantillaId } = req.params;
+
+    try {
+        const query = `DELETE FROM plantillas_documentos WHERE id = $1 RETURNING id;`;
+        
+        const result = await pool.query(query, [plantillaId]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Plantilla no encontrada." });
+        }
+        
+        res.status(200).json({ message: "Plantilla eliminada correctamente.", id: result.rows[0].id });
+
+    } catch (err) {
+        console.error("Error eliminando plantilla:", err);
+        res.status(500).json({ error: "No se pudo eliminar la plantilla." });
+    }
+};
+
+export { generarDocumento, getPlantillas, analizarDocumento, crearPlantilla, actualizarPlantilla, eliminarPlantilla };
