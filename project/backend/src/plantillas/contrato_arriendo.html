@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contrato de Arriendo</title>
+    <style>
+        /* --- ESTILOS UNIFICADOS PARA DOCUMENTOS LEGALES --- */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            margin: 50px;
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            font-size: 14pt;
+            text-decoration: underline;
+            margin-bottom: 2.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.2rem;
+        }
+        .clausula {
+            font-weight: bold;
+        }
+        .firma {
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>CONTRATO DE ARRENDAMIENTO</h1>
+
+    <p>
+        En la ciudad de {{ciudad_contrato}}, a {{fecha_actual}}, entre don(ña)
+        <strong>{{nombre_arrendador}}</strong>, de nacionalidad {{nacionalidad_arrendador}},
+        cédula de identidad número {{rut_arrendador}}, domiciliado(a) en {{domicilio_arrendador}},
+        en adelante el "arrendador"; y don(ña) <strong>{{nombre_arrendatario}}</strong>,
+        de nacionalidad {{nacionalidad_arrendatario}}, cédula de identidad número
+        {{rut_arrendatario}}, domiciliado(a) en {{domicilio_arrendatario}}, en adelante el "arrendatario",
+        se ha convenido el siguiente contrato de arrendamiento:
+    </p>
+
+    <p>
+        <span class="clausula">PRIMERO:</span> El arrendador da en arrendamiento al arrendatario,
+        quien acepta para sí, la propiedad ubicada en {{direccion_propiedad}},
+        en la comuna de {{comuna_propiedad}}.
+    </p>
+
+    <p>
+        <span class="clausula">SEGUNDO:</span> La renta mensual de arrendamiento será la suma de
+        <strong>$ {{monto_renta}} pesos</strong> ({{monto_renta_palabras}}),
+        que se pagará por anticipado dentro de los primeros cinco días de cada mes.
+    </p>
+
+    <p>
+        <span class="clausula">TERCERO:</span> El plazo del presente contrato es de {{plazo_contrato}} meses,
+        contados desde {{fecha_inicio}} hasta {{fecha_termino}}. Podrá renovarse por acuerdo escrito de las partes.
+    </p>
+    <p>
+        <span class="clausula">CUARTO:</span> El arrendatario entrega al arrendador, en este acto, 
+        la suma de <strong>$ {{monto_garantia}} pesos</strong> ({{monto_garantia_palabras}}) 
+        por concepto de garantía, la cual será devuelta al término del contrato,
+        descontando eventuales reparaciones o deudas pendientes.
+    </p>
+    <p>
+        <span class="clausula">QUINTO:</span> El arrendatario se obliga a mantener la propiedad 
+        en buen estado, no efectuar modificaciones sin autorización escrita y 
+        a pagar oportunamente los consumos de luz, agua, gas y gastos comunes.
+    </p>
+    <p>
+        <span class="clausula">SEXTO:</span> Cualquiera de las partes podrá poner término al contrato
+        mediante aviso escrito con {{dias_aviso}} días de anticipación.
+    </p>
+    <p>
+        <span class="clausula">SÉPTIMO:</span> Para todos los efectos legales derivados del presente contrato,
+        las partes fijan su domicilio en la ciudad de {{ciudad_contrato}}, y se someten a la competencia de sus tribunales de justicia.
+    </p>
+
+
+
+    <p>
+        Para constancia, firman las partes en dos ejemplares de igual tenor.
+    </p>
+
+    <br><br><br>
+
+    <p>___________________________<br>
+    <strong>{{nombre_arrendador}}</strong><br>
+    ARRENDADOR
+    </p>
+
+    <br><br><br>
+
+    <p>___________________________<br>
+    <strong>{{nombre_arrendatario}}</strong><br>
+    ARRENDATARIO
+    </p>
+</body>
+</html>

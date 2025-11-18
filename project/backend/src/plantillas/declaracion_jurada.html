@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Declaración Jurada Simple</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            margin: 50px;
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            font-size: 14pt;
+            text-decoration: underline;
+            margin-bottom: 2.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.2rem;
+        }
+        .clausula {
+            font-weight: bold;
+        }
+        .contenido {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            min-height: 150px;
+            overflow-wrap: break-word;
+        }
+        .firma {
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>DECLARACIÓN JURADA SIMPLE</h1>
+
+    <p>
+        En la ciudad de <strong>{{ciudad_firma}}</strong>, a <strong>{{fecha_firma}}</strong>,
+        yo, <strong>{{nombre_declarante}}</strong>, de nacionalidad <strong>{{nacionalidad_declarante}}</strong>,
+        profesión u oficio <strong>{{profesion_declarante}}</strong>, cédula de identidad número
+        <strong>{{rut_declarante}}</strong>, domiciliado(a) en <strong>{{domicilio_declarante}}</strong>,
+        declaro bajo juramento lo siguiente:
+    </p>
+
+    <p><strong>PRIMERO:</strong> Que los hechos que señalo a continuación son verídicos y me constan personalmente:</p>
+
+    <div class="contenido">
+        {{contenido_declaracion}}
+    </div>
+
+    <p><strong>SEGUNDO:</strong> Formulo la presente declaración jurada simple para ser presentada
+        ante <strong>{{entidad_presentacion}}</strong>, comprometiéndome a asumir la responsabilidad legal
+        correspondiente por cualquier falsedad en la información aquí consignada.
+    </p>
+
+    <div class="firma">
+        ___________________________<br>
+        <strong>{{nombre_declarante}}</strong><br>
+        RUT: {{rut_declarante}}
+    </div>
+</body>
+</html>
